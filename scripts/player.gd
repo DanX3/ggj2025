@@ -11,6 +11,9 @@ var max_life = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$WeaponBase.set_enabled(false)
+	$WeaponRay.set_enabled(false)
+	$WeaponCluster.set_enabled(false)
 	_on_weapon_gear_equipped("base")
 
 
@@ -32,6 +35,8 @@ func _on_weapon_gear_equipped(weapon_name: String) -> void:
 			weapon = $WeaponBase
 		"ray":
 			weapon = $WeaponRay
+		"cluster":
+			weapon = $WeaponCluster
 	
 	weapon.set_enabled(true)
 

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b06c2o0yf7kow"]
+
+[ext_resource type="Script" path="res://scripts/weapon_cluster.gd" id="1_wwtjs"]
+[ext_resource type="Texture2D" uid="uid://bevjsptjpdmnw" path="res://assets/arrowCluster.png" id="2_msujf"]
+[ext_resource type="Script" path="res://library/scripts/Cooldown.gd" id="3_37hxc"]
+
+[node name="WeaponCluster" type="Node2D"]
+script = ExtResource("1_wwtjs")
+
+[node name="ArrowPivot" type="Node2D" parent="."]
+
+[node name="Arrow" type="Sprite2D" parent="ArrowPivot"]
+position = Vector2(70, 0)
+rotation = 1.5708
+texture = ExtResource("2_msujf")
+
+[node name="SpawnPoint" type="Node2D" parent="ArrowPivot/Arrow"]
+position = Vector2(-2.00011, -31)
+
+[node name="Cooldown" type="Node" parent="."]
+script = ExtResource("3_37hxc")
+duration = 0.3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

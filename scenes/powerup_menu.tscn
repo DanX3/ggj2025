@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bju28pqfjxy5r" path="res://assets/T_X_Y_Color_Casual.png" id="6_7lww6"]
 [ext_resource type="Texture2D" uid="uid://dhed5fcubep3n" path="res://assets/T_X_B_Color_Casual.png" id="7_jvm7d"]
 
-[sub_resource type="Animation" id="Animation_2stkd"]
-resource_name = "done"
+[sub_resource type="Animation" id="Animation_yjscr"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,8 +23,8 @@ tracks/0/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_yjscr"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_2stkd"]
+resource_name = "done"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

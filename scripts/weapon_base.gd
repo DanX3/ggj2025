@@ -27,7 +27,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		bubble.mult_growth(multiplierGrowth)
 	
 	if Input.is_action_just_released("trigger") and bubble != null:
-		
 		var dir = Vector2(cos(arrowPivot.rotation), sin(arrowPivot.rotation))
 		bubble.apply_central_impulse(ShootForce * dir)
 		bubble.stop_inflating()
