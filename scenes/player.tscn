@@ -61,7 +61,7 @@ height = 41
 [sub_resource type="CircleShape2D" id="CircleShape2D_6prma"]
 radius = 40.7922
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["player"]]
 script = ExtResource("1_jkvq8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -81,9 +81,9 @@ texture_progress = SubResource("GradientTexture2D_w6cmu")
 
 [node name="WeaponGear" parent="." instance=ExtResource("4_6dx4j")]
 
-[node name="WeaponRay" parent="." instance=ExtResource("4_kxpih")]
-
 [node name="WeaponBase" parent="." instance=ExtResource("4_vs1db")]
+
+[node name="WeaponRay" parent="." instance=ExtResource("4_kxpih")]
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4

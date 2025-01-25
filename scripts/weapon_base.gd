@@ -5,8 +5,9 @@ var bubbleScene = preload("res://scenes/inflatable_bubble.tscn")
 @onready var spawn = $ArrowPivot/Arrow/SpawnPoint
 var bubble: RigidBody2D = null
 var arrowDir := Vector2.ZERO
-const ShootForce = 1000
-
+var ShootForce = 1000
+@export var damage = 10
+var multiplierGrowth := 1.0
 
 func _physics_process(delta: float) -> void:
 	arrowDir = Vector2(Input.get_axis("move_left", "move_right"), 
@@ -23,6 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	if Input.is_action_just_pressed("trigger"):
 		bubble = Utils.spawn_child(spawn.global_position, get_parent(), bubbleScene)
+		bubble.mult_growth(multiplierGrowth)
 	
 	if Input.is_action_just_released("trigger") and bubble != null:
 		
@@ -37,3 +39,9 @@ func _on_enabled_change(enabled: bool):
 	if bubble != null:
 		bubble.queue_free()
 		bubble = null
+
+func mult_cooldown(multiplier: float):
+	$Cooldown.duration = multiplier * $Cooldown.duration
+
+func mult_growth(multiplier: float):
+	multiplierGrowth += multiplier

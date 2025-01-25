@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctrnxcpq8w8hj"]
+
+[ext_resource type="Script" path="res://scripts/powerup_card.gd" id="1_krc04"]
+[ext_resource type="FontFile" uid="uid://cdx3p6e36w3q0" path="res://assets/fonts/Heavitas.ttf" id="2_m5cu5"]
+
+[node name="PowerupCard" type="Panel"]
+custom_minimum_size = Vector2(400, 300)
+offset_right = 300.0
+offset_bottom = 200.0
+script = ExtResource("1_krc04")
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 1
+offset_left = 23.0
+offset_top = 31.0
+offset_right = 366.0
+offset_bottom = 269.0
+theme_override_fonts/font = ExtResource("2_m5cu5")
+theme_override_font_sizes/font_size = 32
+text = "Descrizione della carta"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

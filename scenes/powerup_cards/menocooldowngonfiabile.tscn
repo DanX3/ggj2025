@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://db20aa8x310tw"]
+
+[ext_resource type="PackedScene" uid="uid://ctrnxcpq8w8hj" path="res://scenes/powerup_card.tscn" id="1_2tccf"]
+[ext_resource type="Script" path="res://scenes/powerup_cards/menocooldowngonfiabile.gd" id="2_7rxgd"]
+
+[node name="MenoCDGOnfiabile" instance=ExtResource("1_2tccf")]
+script = ExtResource("2_7rxgd")
+
+[node name="Description" parent="." index="0"]
+text = "-10% cooldown bolla gonfiabile"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bf0eejm07elpw"]
+[gd_scene load_steps=24 format=3 uid="uid://bf0eejm07elpw"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rq8oc"]
 [ext_resource type="Script" path="res://scripts/EnemyValue.gd" id="2_lttwi"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://kfq1wyc1bdu3" path="res://scenes/bat_cluster.tscn" id="5_b5hyy"]
 [ext_resource type="PackedScene" uid="uid://ny2m4sxckvji" path="res://scenes/enemy2d.tscn" id="5_rbs0i"]
 [ext_resource type="FontFile" uid="uid://c7v0mienpmo3f" path="res://assets/fonts/Ghostphobia.ttf" id="9_1j52s"]
+[ext_resource type="PackedScene" uid="uid://b1kxf84c42cne" path="res://scenes/powerup_menu.tscn" id="10_5e7u3"]
 
 [sub_resource type="Resource" id="Resource_7ninm"]
 script = ExtResource("2_lttwi")
@@ -27,8 +28,18 @@ value = 15
 
 [sub_resource type="Resource" id="Resource_wej4p"]
 script = ExtResource("4_mt4tn")
-power = 200
+power = 100
 sequence = Array[int]([0, 0, 0, 1])
+
+[sub_resource type="Resource" id="Resource_v0syq"]
+script = ExtResource("4_mt4tn")
+power = 130
+sequence = Array[int]([0, 0, 0, 2])
+
+[sub_resource type="Resource" id="Resource_a4u5m"]
+script = ExtResource("4_mt4tn")
+power = 150
+sequence = Array[int]([0, 0, 0, 0])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gnym3"]
 
@@ -118,6 +129,129 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PowerupMenu:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_v77rn"]
+resource_name = "game_over"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.109804, 0.109804, 0.164706, 0), Color(0.109804, 0.109804, 0.164706, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.73333, 3.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.43, 0.43, 0), Color(1, 0.2, 0.2, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:canRestart")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.63333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_tg6ri"]
+resource_name = "show_powerup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PowerupMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PowerupMenu")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_powerups"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_brvru"]
+resource_name = "wave_finished"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.56667),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, -9), Vector2(0, -1763)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.56667),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.585, 0.585)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_powerup"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_bp44a"]
 resource_name = "wave_start"
@@ -173,92 +307,11 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_brvru"]
-resource_name = "wave_finished"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.56667),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(0, -9), Vector2(0, -1763)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera2D:zoom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.56667),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.585, 0.585)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"show_powerup"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_v77rn"]
-resource_name = "game_over"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.109804, 0.109804, 0.164706, 0), Color(0.109804, 0.109804, 0.164706, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Control:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(2.73333, 3.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 0.43, 0.43, 0), Color(1, 0.2, 0.2, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:canRestart")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(3.63333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ycc88"]
 _data = {
 "RESET": SubResource("Animation_os6mn"),
 "game_over": SubResource("Animation_v77rn"),
+"show_powerup": SubResource("Animation_tg6ri"),
 "wave_finished": SubResource("Animation_brvru"),
 "wave_start": SubResource("Animation_bp44a")
 }
@@ -266,7 +319,7 @@ _data = {
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_rq8oc")
 Enemies = Array[ExtResource("2_lttwi")]([SubResource("Resource_7ninm"), SubResource("Resource_vp6wx"), SubResource("Resource_xvwlh")])
-Waves = Array[ExtResource("4_mt4tn")]([SubResource("Resource_wej4p")])
+Waves = Array[ExtResource("4_mt4tn")]([SubResource("Resource_wej4p"), SubResource("Resource_v0syq"), SubResource("Resource_a4u5m")])
 
 [node name="Player" parent="." instance=ExtResource("2_n4jtl")]
 
@@ -277,6 +330,7 @@ parent_path = "../"
 rects = Array[Rect2]([Rect2(-1200, -600, 100, 1200), Rect2(1200, -600, 100, 1200), Rect2(-1000, 700, 2000, 100), Rect2(-1000, -800, 2000, 100)])
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -9)
@@ -351,5 +405,8 @@ libraries = {
 "": SubResource("AnimationLibrary_ycc88")
 }
 
+[node name="PowerupMenu" parent="." instance=ExtResource("10_5e7u3")]
+
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="done" from="PowerupMenu" to="." method="_on_powerup_menu_done"]

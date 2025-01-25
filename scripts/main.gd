@@ -19,6 +19,7 @@ func _ready() -> void:
 	$AnimationPlayer.play("wave_start")
 
 func wave_start():
+	$Player.heal()
 	$Timer.start()
 	spawnIndex = 0
 	wavePowerLeft = Waves[waveIndex].power
@@ -44,6 +45,7 @@ func _enemy_died():
 	enemiesLeft -= 1
 	if enemiesLeft == 0:
 		print("wave finished")
+		$AnimationPlayer.play("show_powerup")
 
 
 func show_powerup():
@@ -56,3 +58,13 @@ func _on_player_game_over() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if canRestart and Input.is_action_just_pressed("trigger"):
 		get_tree().change_scene_to_file("res://scenes/main.tscn")
+
+
+func _on_powerup_menu_done() -> void:
+	waveIndex += 1
+	if waveIndex >= Waves.size():
+		print("You win!!")
+		get_tree().quit()
+		return
+		
+	wave_start()
