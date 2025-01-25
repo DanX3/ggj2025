@@ -7,14 +7,16 @@ var enemiesLeft = 0
 
 const WaveDurationSec = 30
 
-@export var Enemies: Array[EnemyValue]
+@onready var waveLabel = $CanvasLayer/Label
 
+@export var Enemies: Array[EnemyValue]
 @export var Waves: Array[Wave]
+@export var canRestart = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	wave_start()
+	$AnimationPlayer.play("wave_start")
 
 func wave_start():
 	$Timer.start()
@@ -42,4 +44,15 @@ func _enemy_died():
 	enemiesLeft -= 1
 	if enemiesLeft == 0:
 		print("wave finished")
-	
+
+
+func show_powerup():
+	pass
+
+
+func _on_player_game_over() -> void:
+	$AnimationPlayer.play("game_over")
+
+func _unhandled_input(event: InputEvent) -> void:
+	if canRestart and Input.is_action_just_pressed("trigger"):
+		get_tree().change_scene_to_file("res://scenes/main.tscn")

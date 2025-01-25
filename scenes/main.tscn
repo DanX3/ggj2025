@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bf0eejm07elpw"]
+[gd_scene load_steps=20 format=3 uid="uid://bf0eejm07elpw"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rq8oc"]
 [ext_resource type="Script" path="res://scripts/EnemyValue.gd" id="2_lttwi"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dg1ix65ma8pnb" path="res://scenes/swan.tscn" id="4_qw7ut"]
 [ext_resource type="PackedScene" uid="uid://kfq1wyc1bdu3" path="res://scenes/bat_cluster.tscn" id="5_b5hyy"]
 [ext_resource type="PackedScene" uid="uid://ny2m4sxckvji" path="res://scenes/enemy2d.tscn" id="5_rbs0i"]
+[ext_resource type="FontFile" uid="uid://c7v0mienpmo3f" path="res://assets/fonts/Ghostphobia.ttf" id="9_1j52s"]
 
 [sub_resource type="Resource" id="Resource_7ninm"]
 script = ExtResource("2_lttwi")
@@ -29,6 +30,239 @@ script = ExtResource("4_mt4tn")
 power = 200
 sequence = Array[int]([0, 0, 0, 1])
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gnym3"]
+
+[sub_resource type="Animation" id="Animation_os6mn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(674.5, -245)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -9)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera2D:zoom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Control:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:canRestart")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bp44a"]
+resource_name = "wave_start"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.533333, 0.6, 1.1, 1.2, 1.73333),
+"transitions": PackedFloat32Array(0.5, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(674.5, -245), Vector2(674.5, 291), Vector2(674.5, 219), Vector2(674.5, 255), Vector2(674.5, 255), Vector2(674.5, 327), Vector2(674.5, -383)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Start"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.73333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"wave_start"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_brvru"]
+resource_name = "wave_finished"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.56667),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, -9), Vector2(0, -1763)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.56667),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.585, 0.585)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_powerup"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v77rn"]
+resource_name = "game_over"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.109804, 0.109804, 0.164706, 0), Color(0.109804, 0.109804, 0.164706, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.73333, 3.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.43, 0.43, 0), Color(1, 0.2, 0.2, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:canRestart")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.63333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ycc88"]
+_data = {
+"RESET": SubResource("Animation_os6mn"),
+"game_over": SubResource("Animation_v77rn"),
+"wave_finished": SubResource("Animation_brvru"),
+"wave_start": SubResource("Animation_bp44a")
+}
+
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_rq8oc")
 Enemies = Array[ExtResource("2_lttwi")]([SubResource("Resource_7ninm"), SubResource("Resource_vp6wx"), SubResource("Resource_xvwlh")])
@@ -46,6 +280,76 @@ rects = Array[Rect2]([Rect2(-1200, -600, 100, 1200), Rect2(1200, -600, 100, 1200
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -9)
-zoom = Vector2(0.975, 0.975)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -285.5
+offset_top = -245.0
+offset_right = 285.5
+offset_bottom = -87.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_1j52s")
+theme_override_font_sizes/font_size = 144
+text = "Start"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_gnym3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Game Over" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -285.5
+offset_top = 190.0
+offset_right = 285.5
+offset_bottom = 348.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_1j52s")
+theme_override_font_sizes/font_size = 144
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Game Over2" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -285.5
+offset_top = 667.0
+offset_right = 285.5
+offset_bottom = 825.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_1j52s")
+theme_override_font_sizes/font_size = 75
+text = "Shoot to fight again your nightmares"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ycc88")
+}
+
+[connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
