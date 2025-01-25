@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cehulgcqcl7x7"]
 
 [ext_resource type="Script" path="res://library/scripts/DamageLabel.gd" id="1_pagy7"]
-[ext_resource type="FontFile" uid="uid://bo2wnft3f8t0y" path="res://library/assets/anime-ace.bold.ttf" id="2_v6aca"]
+[ext_resource type="FontFile" uid="uid://tfdiwwpe52y7" path="res://library/assets/anime-ace.bold.ttf" id="2_v6aca"]
 
 [sub_resource type="Animation" id="Animation_daw5o"]
 length = 0.001
@@ -65,10 +65,10 @@ offset_bottom = 40.0
 script = ExtResource("1_pagy7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "shrink"
 libraries = {
 "": SubResource("AnimationLibrary_kvsyb")
 }
+autoplay = "shrink"
 
 [node name="Pivot" type="Control" parent="."]
 anchors_preset = 0
@@ -85,7 +85,7 @@ offset_right = 56.9759
 offset_bottom = 40.914
 scale = Vector2(0.25, 0.25)
 theme_override_fonts/font = SubResource("FontVariation_m7sy2")
-theme_override_font_sizes/font_size = 49
+theme_override_font_sizes/font_size = 76
 text = "32"
 
 [node name="Label" type="Label" parent="Pivot"]
@@ -95,5 +95,5 @@ offset_right = 59.0
 offset_bottom = 39.0
 scale = Vector2(0.25, 0.25)
 theme_override_fonts/font = SubResource("FontVariation_m7sy2")
-theme_override_font_sizes/font_size = 49
+theme_override_font_sizes/font_size = 76
 text = "32"

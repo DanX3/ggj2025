@@ -12,8 +12,12 @@ func _ready():
 	_prepare_thresholds()
 
 
-func spawn() -> Node:
-	var new_node = node_scene.instantiate()
+func spawn(packed_scene: PackedScene = null) -> Node:
+	var new_node = null
+	if packed_scene != null:
+		new_node = packed_scene.instantiate()
+	else:
+		new_node = node_scene.instantiate()
 	var parent = get_node(parent_path)
 	new_node.global_position = global_position
 	if rects != null and not rects.is_empty():

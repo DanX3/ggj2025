@@ -17,7 +17,6 @@ func _process(delta: float) -> void:
 		size += GrowPerSec * delta
 		_set_size(size)
 	elif linear_velocity.length_squared() < 10.0 and wasMoving:
-		print("freed")
 		queue_free()
 	wasMoving = linear_velocity.length_squared() > 10.0
 
@@ -39,4 +38,9 @@ func _on_body_entered(body: Node) -> void:
 
 
 func _on_explosion_area_body_entered(body: Node2D) -> void:
-	body.queue_free()
+	if not (body is Enemy):
+		return
+	
+	var enemy = body as Enemy
+	enemy.take_damage(10)
+	

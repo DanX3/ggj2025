@@ -25,7 +25,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		bubble = Utils.spawn_child(spawn.global_position, get_parent(), bubbleScene)
 	
 	if Input.is_action_just_released("trigger") and bubble != null:
-		bubble.apply_central_impulse(ShootForce * arrowDir)
+		
+		var dir = Vector2(cos(arrowPivot.rotation), sin(arrowPivot.rotation))
+		bubble.apply_central_impulse(ShootForce * dir)
 		bubble.stop_inflating()
 		bubble = null
 		$Cooldown.start()

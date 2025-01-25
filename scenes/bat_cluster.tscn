@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://kfq1wyc1bdu3"]
+
+[ext_resource type="PackedScene" uid="uid://ny2m4sxckvji" path="res://scenes/enemy2d.tscn" id="1_a1b4h"]
+[ext_resource type="Script" path="res://scripts/bat_cluster.gd" id="2_3gc7l"]
+[ext_resource type="Script" path="res://library/scripts/Spawner.gd" id="3_c6ga6"]
+[ext_resource type="PackedScene" uid="uid://bq37hlfjuujyx" path="res://scenes/bat.tscn" id="4_k007k"]
+
+[node name="BatCluster" instance=ExtResource("1_a1b4h")]
+script = ExtResource("2_3gc7l")
+batCount = 10
+
+[node name="Sprite2D" parent="." index="0"]
+visible = false
+
+[node name="Spawner" type="Node2D" parent="." index="4"]
+script = ExtResource("3_c6ga6")
+node_scene = ExtResource("4_k007k")
+parent_path = "../../"
+rects = Array[Rect2]([Rect2(-200, -200, 400, 400)])

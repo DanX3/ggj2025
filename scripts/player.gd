@@ -1,7 +1,12 @@
 extends Node2D
 
+signal game_over
+
 @onready var weaponGear := $WeaponGear
+@onready var lifeBar = $CanvasLayer/LifeBar
 var weapon: Weapon = null
+@onready var life = 100
+@onready var alive = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,3 +33,16 @@ func _on_weapon_gear_equipped(weapon_name: String) -> void:
 			weapon = $WeaponRay
 	
 	weapon.set_enabled(true)
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if not (body is Enemy):
+		return
+		
+	life -= (body as Enemy).damage
+	lifeBar.value = life
+	body.queue_free()
+	
+	if life <= 0 and alive:
+		alive = false
+		emit_signal("game_over")

@@ -1,7 +1,7 @@
 class_name Health extends Node
 
 signal died
-signal damage_taken
+signal damage_taken(damage: int)
 
 @export var max_health: int = 100
 @export var damage_label_color := Color.RED

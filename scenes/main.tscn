@@ -1,12 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://bf0eejm07elpw"]
+[gd_scene load_steps=13 format=3 uid="uid://bf0eejm07elpw"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rq8oc"]
+[ext_resource type="Script" path="res://scripts/EnemyValue.gd" id="2_lttwi"]
 [ext_resource type="PackedScene" uid="uid://dtlnex55fc6bc" path="res://scenes/player.tscn" id="2_n4jtl"]
 [ext_resource type="Script" path="res://library/scripts/Spawner.gd" id="3_tbw8t"]
+[ext_resource type="Script" path="res://scripts/Wave.gd" id="4_mt4tn"]
+[ext_resource type="PackedScene" uid="uid://dg1ix65ma8pnb" path="res://scenes/swan.tscn" id="4_qw7ut"]
+[ext_resource type="PackedScene" uid="uid://kfq1wyc1bdu3" path="res://scenes/bat_cluster.tscn" id="5_b5hyy"]
 [ext_resource type="PackedScene" uid="uid://ny2m4sxckvji" path="res://scenes/enemy2d.tscn" id="5_rbs0i"]
+
+[sub_resource type="Resource" id="Resource_7ninm"]
+script = ExtResource("2_lttwi")
+scene = ExtResource("5_rbs0i")
+value = 10
+
+[sub_resource type="Resource" id="Resource_vp6wx"]
+script = ExtResource("2_lttwi")
+scene = ExtResource("4_qw7ut")
+value = 20
+
+[sub_resource type="Resource" id="Resource_xvwlh"]
+script = ExtResource("2_lttwi")
+scene = ExtResource("5_b5hyy")
+value = 15
+
+[sub_resource type="Resource" id="Resource_wej4p"]
+script = ExtResource("4_mt4tn")
+power = 200
+sequence = Array[int]([0, 0, 0, 1])
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_rq8oc")
+Enemies = Array[ExtResource("2_lttwi")]([SubResource("Resource_7ninm"), SubResource("Resource_vp6wx"), SubResource("Resource_xvwlh")])
+Waves = Array[ExtResource("4_mt4tn")]([SubResource("Resource_wej4p")])
 
 [node name="Player" parent="." instance=ExtResource("2_n4jtl")]
 
@@ -14,11 +40,9 @@ script = ExtResource("1_rq8oc")
 script = ExtResource("3_tbw8t")
 node_scene = ExtResource("5_rbs0i")
 parent_path = "../"
-rects = Array[Rect2]([Rect2(-1200, 0, 100, 100), Rect2(1200, 0, 100, 100), Rect2(-50, -700, 100, 100), Rect2(-50, 700, 100, 100)])
+rects = Array[Rect2]([Rect2(-1200, -600, 100, 1200), Rect2(1200, -600, 100, 1200), Rect2(-1000, 700, 2000, 100), Rect2(-1000, -800, 2000, 100)])
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.147
-autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -9)
