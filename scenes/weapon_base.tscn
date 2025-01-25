@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8fxuqvyqi4cf"]
+[gd_scene load_steps=4 format=3 uid="uid://b8fxuqvyqi4cf"]
 
 [ext_resource type="Script" path="res://scripts/weapon_base.gd" id="1_0rks4"]
 [ext_resource type="Texture2D" uid="uid://dg734odut5cej" path="res://assets/arrow.png" id="2_5jahp"]
+[ext_resource type="Script" path="res://library/scripts/Cooldown.gd" id="3_w4e45"]
 
 [node name="WeaponBase" type="Node2D"]
 script = ExtResource("1_0rks4")
@@ -16,3 +17,7 @@ texture = ExtResource("2_5jahp")
 [node name="SpawnPoint" type="Node2D" parent="ArrowPivot/Arrow"]
 position = Vector2(-0.0001086, -30)
 rotation = -1.5708
+
+[node name="Cooldown" type="Node" parent="."]
+script = ExtResource("3_w4e45")
+duration = 0.3

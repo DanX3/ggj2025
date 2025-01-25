@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 			var cooldown = spawn.get_child(0) as Cooldown
 			if cooldown.is_ready():
 				cooldown.start()
-				var bubble = Utils.spawn_child(spawn.global_position, self, bubbleScene) as InflatableBubble
+				var bubble = Utils.spawn_child(spawn.global_position, get_parent(), bubbleScene) as InflatableBubble
 				bubble.stop_inflating(100)
 				#bubble.call_deferred("stop_inflating")
 				bubble.apply_central_impulse(ShootForce * arrowDir)

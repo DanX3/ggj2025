@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cr1ngpvxkmdn0"]
 
 [ext_resource type="Script" path="res://scripts/weapon_ray.gd" id="1_8o7k1"]
-[ext_resource type="Texture2D" uid="uid://dg734odut5cej" path="res://assets/arrow.png" id="2_5aa4l"]
+[ext_resource type="Texture2D" uid="uid://bspbtnl3khihp" path="res://assets/arrowRay.png" id="2_o3bo6"]
 [ext_resource type="Script" path="res://library/scripts/Cooldown.gd" id="3_m27g1"]
 
 [node name="WeaponRay" type="Node2D"]
@@ -12,7 +12,7 @@ script = ExtResource("1_8o7k1")
 [node name="Arrow" type="Sprite2D" parent="ArrowPivot"]
 position = Vector2(70, 0)
 rotation = 1.5708
-texture = ExtResource("2_5aa4l")
+texture = ExtResource("2_o3bo6")
 
 [node name="SpawnPoints" type="Node2D" parent="ArrowPivot/Arrow"]
 

@@ -86,7 +86,6 @@ nextIcon = NodePath("../ray")
 prevIcon = NodePath("../wall")
 
 [node name="ray" parent="CanvasLayer/WeaponGear" node_paths=PackedStringArray("nextIcon", "prevIcon") instance=ExtResource("3_cad2r")]
-visible = false
 layout_mode = 0
 offset_left = -78.0
 offset_top = 98.0
@@ -97,6 +96,7 @@ nextIcon = NodePath("../cluster")
 prevIcon = NodePath("../base")
 
 [node name="cluster" parent="CanvasLayer/WeaponGear" node_paths=PackedStringArray("nextIcon", "prevIcon") instance=ExtResource("3_cad2r")]
+visible = false
 layout_mode = 0
 offset_left = 92.0
 offset_top = -65.0

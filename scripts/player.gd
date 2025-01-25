@@ -20,12 +20,11 @@ func _on_weapon_gear_unequipped() -> void:
 
 
 func _on_weapon_gear_equipped(weapon_name: String) -> void:
-	pass
-	#assert(weapon == null)
-	#match weapon_name:
-		#"base":
-			#weapon = $WeaponBase
-		#"ray":
-			#weapon = $WeaponRay
+	assert(weapon == null)
+	match weapon_name:
+		"base":
+			weapon = $WeaponBase
+		"ray":
+			weapon = $WeaponRay
 	
-	#weapon.set_enabled(true)
+	weapon.set_enabled(true)

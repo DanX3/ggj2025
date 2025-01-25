@@ -18,13 +18,20 @@ func _physics_process(delta: float) -> void:
 		arrowPivot.rotation = atan2(arrowDir.y, arrowDir.x)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not enabled:
+	if not enabled or not $Cooldown.is_ready():
 		return
 		
 	if Input.is_action_just_pressed("trigger"):
-		bubble = Utils.spawn_child(spawn.global_position, self, bubbleScene)
+		bubble = Utils.spawn_child(spawn.global_position, get_parent(), bubbleScene)
 	
 	if Input.is_action_just_released("trigger") and bubble != null:
 		bubble.apply_central_impulse(ShootForce * arrowDir)
 		bubble.stop_inflating()
+		bubble = null
+		$Cooldown.start()
+
+
+func _on_enabled_change(enabled: bool):
+	if bubble != null:
+		bubble.queue_free()
 		bubble = null
