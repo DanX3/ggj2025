@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr1ngpvxkmdn0"]
+
+[ext_resource type="Script" path="res://scripts/weapon_ray.gd" id="1_8o7k1"]
+[ext_resource type="Texture2D" uid="uid://dg734odut5cej" path="res://assets/arrow.png" id="2_5aa4l"]
+[ext_resource type="Script" path="res://library/scripts/Cooldown.gd" id="3_m27g1"]
+
+[node name="WeaponRay" type="Node2D"]
+script = ExtResource("1_8o7k1")
+
+[node name="ArrowPivot" type="Node2D" parent="."]
+
+[node name="Arrow" type="Sprite2D" parent="ArrowPivot"]
+position = Vector2(70, 0)
+rotation = 1.5708
+texture = ExtResource("2_5aa4l")
+
+[node name="SpawnPoints" type="Node2D" parent="ArrowPivot/Arrow"]
+
+[node name="SpawnPoint" type="Node2D" parent="ArrowPivot/Arrow/SpawnPoints"]
+position = Vector2(-0.0001086, -30)
+rotation = -1.5708
+
+[node name="Cooldown" type="Node" parent="ArrowPivot/Arrow/SpawnPoints/SpawnPoint"]
+script = ExtResource("3_m27g1")
+duration = 0.18
+
+[node name="SpawnPoint2" type="Node2D" parent="ArrowPivot/Arrow/SpawnPoints"]
+position = Vector2(-19.0001, -29.9999)
+rotation = -1.5708
+
+[node name="Cooldown2" type="Node" parent="ArrowPivot/Arrow/SpawnPoints/SpawnPoint2"]
+script = ExtResource("3_m27g1")
+duration = 0.21
+
+[node name="SpawnPoint3" type="Node2D" parent="ArrowPivot/Arrow/SpawnPoints"]
+position = Vector2(20.9999, -30.0001)
+rotation = -1.5708
+
+[node name="Cooldown3" type="Node" parent="ArrowPivot/Arrow/SpawnPoints/SpawnPoint3"]
+script = ExtResource("3_m27g1")
+duration = 0.22

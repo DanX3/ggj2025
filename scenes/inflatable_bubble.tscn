@@ -8,6 +8,7 @@
 resource_local_to_scene = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_swdua"]
+resource_local_to_scene = true
 
 [sub_resource type="Animation" id="Animation_yd5ry"]
 resource_name = "explode"
@@ -137,7 +138,7 @@ collision_mask = 2
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 1
-linear_damp = 2.0
+linear_damp = 1.0
 script = ExtResource("1_h8m2a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
