@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7kfjfrjwtx8"]
+
+[ext_resource type="Texture2D" uid="uid://dufajfpk0n7hx" path="res://assets/character.png" id="1_elr8k"]
+[ext_resource type="PackedScene" uid="uid://brfc7x1qtyvm3" path="res://scenes/Spawner3D.tscn" id="2_g2asi"]
+
+[sub_resource type="Environment" id="Environment_w7dr7"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(100, 0.1, 100)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40113, 0)
+billboard = 1
+texture = ExtResource("1_elr8k")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.499214, 0.866479, 0, -0.866479, 0.499214, 0, 12.8843, 9.95323)
+environment = SubResource("Environment_w7dr7")
+current = true
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.499214, 0.866479, 0, -0.866479, 0.499214, 0, 20.378, 23.9409)
+environment = SubResource("Environment_w7dr7")
+
+[node name="Node3D" parent="." instance=ExtResource("2_g2asi")]
+
+[node name="Spawner3D" parent="." instance=ExtResource("2_g2asi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22423, 0.971016, 27.0125)
+
+[node name="Spawner3D2" parent="." instance=ExtResource("2_g2asi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.350887, 0.971014, -31.101)
+
+[node name="Spawner3D3" parent="." instance=ExtResource("2_g2asi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.4685, 0.971014, -0.008564)
+
+[node name="Spawner3D4" parent="." instance=ExtResource("2_g2asi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.86, 0.971014, -1.48303)
+
+[node name="Spawner3D5" parent="." instance=ExtResource("2_g2asi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5651, 0.971014, 15.6326)
+
+[node name="Spawner3D6" parent="." instance=ExtResource("2_g2asi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1657, 0.971014, -18.8978)
+
+[node name="Spawner3D7" parent="." instance=ExtResource("2_g2asi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2277, 0.971014, -28.252)
+
+[node name="Spawner3D8" parent="." instance=ExtResource("2_g2asi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3136, 0.971014, 21.2886)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.985411, 0.15266, -0.0752333, -0.107125, 0.899859, 0.422821, 0.132247, -0.408593, 0.903085, 0, 8.0759, 8.59541)
+light_color = Color(0, 0.655666, 0.658758, 1)
+light_energy = 1.323

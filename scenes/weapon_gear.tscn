@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbj6vr7km3k8k"]
+
+[ext_resource type="Texture2D" uid="uid://bb382t8rcm6d0" path="res://assets/gear.png" id="1_djh4q"]
+[ext_resource type="Script" path="res://scripts/weapon_gear.gd" id="1_fkdac"]
+[ext_resource type="Texture2D" uid="uid://b46125t50dhxa" path="res://assets/weaponBaseIcon.png" id="2_ekiaj"]
+[ext_resource type="Texture2D" uid="uid://bon2qm75efssl" path="res://assets/weaponBubbleRayIcon.png" id="3_rxvoj"]
+[ext_resource type="Texture2D" uid="uid://55b31wes1342" path="res://assets/weaponClusterIcon.png" id="4_qojsr"]
+[ext_resource type="Texture2D" uid="uid://cso7xoisqb020" path="res://assets/weaponWallIcon.png" id="5_rnyuc"]
+
+[sub_resource type="Animation" id="Animation_c4b1c"]
+resource_name = "no_change"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/WeaponGear:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.366667, 0.5),
+"transitions": PackedFloat32Array(0.5, -2, 0.5, 1),
+"update": 0,
+"values": [-1.57079, -1.309, -1.8326, -1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_3p622"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/WeaponGear:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.57079]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m0gp4"]
+_data = {
+"RESET": SubResource("Animation_3p622"),
+"no_change": SubResource("Animation_c4b1c")
+}
+
+[node name="WeaponGear" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fkdac")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WeaponGear" type="TextureRect" parent="CanvasLayer"]
+offset_left = -146.0
+offset_top = 334.0
+offset_right = 189.0
+offset_bottom = 666.0
+rotation = -1.57079
+pivot_offset = Vector2(167, 166)
+texture = ExtResource("1_djh4q")
+
+[node name="WeaponBaseIcon" type="TextureRect" parent="CanvasLayer/WeaponGear"]
+offset_left = 90.5875
+offset_top = 266.0
+offset_right = 237.587
+offset_bottom = 413.0
+texture = ExtResource("2_ekiaj")
+
+[node name="WeaponBubbleRayIcon" type="TextureRect" parent="CanvasLayer/WeaponGear"]
+offset_left = -80.4129
+offset_top = 99.0005
+offset_right = 66.5871
+offset_bottom = 246.001
+texture = ExtResource("3_rxvoj")
+
+[node name="WeaponClusterIcon" type="TextureRect" parent="CanvasLayer/WeaponGear"]
+visible = false
+offset_left = 88.5868
+offset_top = -64.9998
+offset_right = 235.587
+offset_bottom = 82.0002
+texture = ExtResource("4_qojsr")
+
+[node name="WeaponWallIcon" type="TextureRect" parent="CanvasLayer/WeaponGear"]
+offset_left = 254.587
+offset_top = 99.9998
+offset_right = 401.587
+offset_bottom = 247.0
+rotation = -0.00281382
+texture = ExtResource("5_rnyuc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m0gp4")
+}
