@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmo75ois7548l"]
+
+[ext_resource type="Texture2D" uid="uid://b46125t50dhxa" path="res://assets/weaponBaseIcon.png" id="1_hkua5"]
+[ext_resource type="Script" path="res://scripts/icon_base.gd" id="2_yfrru"]
+
+[node name="WeaponIcon" type="TextureRect"]
+offset_right = 147.0
+offset_bottom = 147.0
+texture = ExtResource("1_hkua5")
+script = ExtResource("2_yfrru")

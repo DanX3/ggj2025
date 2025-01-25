@@ -1,4 +1,4 @@
-extends Node2D
+extends Weapon
 
 var bubbleScene = preload("res://scenes/inflatable_bubble.tscn")
 @onready var arrowPivot := $ArrowPivot
@@ -18,6 +18,9 @@ func _physics_process(delta: float) -> void:
 		arrowPivot.rotation = atan2(arrowDir.y, arrowDir.x)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not enabled:
+		return
+		
 	if Input.is_action_just_pressed("trigger"):
 		bubble = Utils.spawn_child(spawn.global_position, self, bubbleScene)
 	

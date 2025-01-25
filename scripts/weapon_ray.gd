@@ -1,4 +1,4 @@
-extends Node2D
+extends Weapon
 
 var bubbleScene = preload("res://scenes/inflatable_bubble.tscn")
 @onready var arrowPivot := $ArrowPivot
@@ -6,8 +6,10 @@ var bubbleScene = preload("res://scenes/inflatable_bubble.tscn")
 var arrowDir := Vector2.RIGHT
 const ShootForce = 1000
 
-
 func _physics_process(delta: float) -> void:
+	if not enabled:
+		return
+
 	arrowDir = Vector2(Input.get_axis("move_left", "move_right"), 
 		Input.get_axis("move_up", "move_down"))
 	

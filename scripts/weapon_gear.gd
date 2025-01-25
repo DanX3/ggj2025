@@ -21,10 +21,6 @@ enum Weapon {
 }
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
 func equipWeapon(weapon: Weapon):
 	match weapon:
 		Weapon.Ray:
@@ -37,10 +33,10 @@ func equipWeapon(weapon: Weapon):
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("gear_left"):
-		_rotate(+1)
+		_rotate(-1)
 	
 	if Input.is_action_just_pressed("gear_right"):
-		_rotate(-1)
+		_rotate(+1)
 
 
 func _rotate(dir: int):
@@ -57,30 +53,28 @@ func _rotate(dir: int):
 		return
 	
 	# switch to the next weapon
-	var newIndex = selectedWeaponIndex
-	var stepDiff = 0
+	var steps = 0
+	var p = selectedWeaponIndex
 	if dir > 0:
-		for i in range(1, 3):
-			newIndex = (selectedWeaponIndex + i) % 4
-			if gear.get_child(newIndex).visible:
-				stepDiff = selectedWeaponIndex - (newIndex if newIndex > 0 else 4)
-				print("selected  %d - newIndex %d = %d" % [selectedWeaponIndex, newIndex, selectedWeaponIndex - newIndex])
+		while true:
+			var nextWeapon = (gear.get_child(selectedWeaponIndex) as WeaponIcon).nextIcon
+			selectedWeaponIndex = nextWeapon.get_index()
+			steps += 1
+			if nextWeapon.visible:
 				break
 	else:
-		for i in range(-1, -3, -1):
-			newIndex = selectedWeaponIndex + i
-			var positiveIndex = newIndex if newIndex >= 0 else newIndex + 4
-			if gear.get_child(positiveIndex).visible:
-				stepDiff = selectedWeaponIndex - newIndex
+		while true:
+			var prevWeapon = (gear.get_child(selectedWeaponIndex) as WeaponIcon).prevIcon
+			selectedWeaponIndex = prevWeapon.get_index()
+			steps -= 1
+			if prevWeapon.visible:
 				break
-	print_debug(stepDiff)
-	var angleDifference = 0.5 * PI * stepDiff
+	
+	var angleDifference = -steps * 0.5 * PI
 	var tween = get_tree().create_tween().tween_property(
-		gear, "rotation", gear.rotation + angleDifference, 0.3 * abs(stepDiff))
+		gear, "rotation", gear.rotation + angleDifference, 0.3 * abs(steps))
 	isRotating = true
 	tween.finished.connect(func(): 
 		isRotating = false
 		emit_signal("equipped", gear.get_child(selectedWeaponIndex).name))
-	selectedWeaponIndex = (newIndex + 4) % 4 
 	emit_signal("unequipped")
-	
