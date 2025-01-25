@@ -1,9 +1,9 @@
 extends Control
 
-@onready var baseIcon := $CanvasLayer/WeaponGear/WeaponBaseIcon
-@onready var rayIcon := $CanvasLayer/WeaponGear/WeaponBubbleRayIcon
-@onready var wallIcon := $CanvasLayer/WeaponGear/WeaponWallIcon
-@onready var clusterIcon := $CanvasLayer/WeaponGear/WeaponClusterIcon
+@onready var baseIcon := $CanvasLayer/WeaponGear/base
+@onready var rayIcon := $CanvasLayer/WeaponGear/ray
+@onready var wallIcon := $CanvasLayer/WeaponGear/wall
+@onready var clusterIcon := $CanvasLayer/WeaponGear/cluster
 @onready var player := $AnimationPlayer
 @onready var gear = $CanvasLayer/WeaponGear
 
@@ -11,7 +11,7 @@ var selectedWeaponIndex := 0
 var isRotating := false
 
 signal equipped(weapon_name: String)
-
+signal unequipped()
 
 enum Weapon {
 	Base,
@@ -78,6 +78,9 @@ func _rotate(dir: int):
 	var tween = get_tree().create_tween().tween_property(
 		gear, "rotation", gear.rotation + angleDifference, 0.3 * abs(stepDiff))
 	isRotating = true
-	tween.finished.connect(func(): isRotating = false)
+	tween.finished.connect(func(): 
+		isRotating = false
+		emit_signal("equipped", gear.get_child(selectedWeaponIndex).name))
 	selectedWeaponIndex = (newIndex + 4) % 4 
+	emit_signal("unequipped")
 	

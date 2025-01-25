@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://b02fivnjl3nem" path="res://assets/AjFP5.png" id="1_e4qyu"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_jkvq8"]
-[ext_resource type="Texture2D" uid="uid://dg734odut5cej" path="res://assets/arrow.png" id="3_k53i5"]
 [ext_resource type="PackedScene" uid="uid://bbj6vr7km3k8k" path="res://scenes/weapon_gear.tscn" id="4_6dx4j"]
+[ext_resource type="PackedScene" uid="uid://b8fxuqvyqi4cf" path="res://scenes/weapon_base.tscn" id="4_vs1db"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5lnje"]
 atlas = ExtResource("1_e4qyu")
@@ -64,13 +64,6 @@ script = ExtResource("1_jkvq8")
 sprite_frames = SubResource("SpriteFrames_gfspe")
 animation = &"walk_front"
 
-[node name="ArrowPivot" type="Node2D" parent="."]
-
-[node name="Arrow" type="Sprite2D" parent="ArrowPivot"]
-position = Vector2(70, 0)
-rotation = 1.5708
-texture = ExtResource("3_k53i5")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LifeBar" type="TextureProgressBar" parent="CanvasLayer"]
@@ -83,3 +76,8 @@ texture_under = SubResource("GradientTexture2D_5gt5k")
 texture_progress = SubResource("GradientTexture2D_w6cmu")
 
 [node name="WeaponGear" parent="." instance=ExtResource("4_6dx4j")]
+
+[node name="WeaponBase" parent="." instance=ExtResource("4_vs1db")]
+
+[connection signal="equipped" from="WeaponGear" to="." method="_on_weapon_gear_equipped"]
+[connection signal="unequipped" from="WeaponGear" to="." method="_on_weapon_gear_unequipped"]

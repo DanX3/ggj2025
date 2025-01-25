@@ -4,13 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://c8l4f1xkvw35g" path="res://library/assets/minimapIcon_exclamationRed.png" id="2_g5ng5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gy4mc"]
+radius = 28.4605
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_kamnt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(7.66667, 3.61429)
+texture = ExtResource("2_g5ng5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gy4mc")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3.33333, 1.57143)
-texture = ExtResource("2_g5ng5")

@@ -64,21 +64,21 @@ rotation = -1.57079
 pivot_offset = Vector2(167, 166)
 texture = ExtResource("1_djh4q")
 
-[node name="WeaponBaseIcon" type="TextureRect" parent="CanvasLayer/WeaponGear"]
+[node name="base" type="TextureRect" parent="CanvasLayer/WeaponGear"]
 offset_left = 90.5875
 offset_top = 266.0
 offset_right = 237.587
 offset_bottom = 413.0
 texture = ExtResource("2_ekiaj")
 
-[node name="WeaponBubbleRayIcon" type="TextureRect" parent="CanvasLayer/WeaponGear"]
+[node name="ray" type="TextureRect" parent="CanvasLayer/WeaponGear"]
 offset_left = -80.4129
 offset_top = 99.0005
 offset_right = 66.5871
 offset_bottom = 246.001
 texture = ExtResource("3_rxvoj")
 
-[node name="WeaponClusterIcon" type="TextureRect" parent="CanvasLayer/WeaponGear"]
+[node name="cluster" type="TextureRect" parent="CanvasLayer/WeaponGear"]
 visible = false
 offset_left = 88.5868
 offset_top = -64.9998
@@ -86,7 +86,7 @@ offset_right = 235.587
 offset_bottom = 82.0002
 texture = ExtResource("4_qojsr")
 
-[node name="WeaponWallIcon" type="TextureRect" parent="CanvasLayer/WeaponGear"]
+[node name="wall" type="TextureRect" parent="CanvasLayer/WeaponGear"]
 offset_left = 254.587
 offset_top = 99.9998
 offset_right = 401.587
