@@ -4,7 +4,9 @@ var bubbleScene = preload("res://scenes/inflatable_bubble.tscn")
 @onready var arrowPivot := $ArrowPivot
 @onready var spawnPoints = $ArrowPivot/Arrow/SpawnPoints
 var arrowDir := Vector2.RIGHT
-const ShootForce = 1000
+var ShootForce = 1000
+var damageBonus := 0
+var spawnPointsCount = 3
 
 func _physics_process(delta: float) -> void:
 	if not enabled:
@@ -18,6 +20,8 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("trigger"):
 		for spawn in spawnPoints.get_children():
+			if not spawn.visible:
+				continue
 			var cooldown = spawn.get_child(0) as Cooldown
 			if cooldown.is_ready():
 				cooldown.start()
@@ -26,3 +30,13 @@ func _physics_process(delta: float) -> void:
 				#bubble.call_deferred("stop_inflating")
 				bubble.apply_central_impulse(ShootForce * arrowDir)
 			
+
+func add_damage_bonus(bonus):
+	damageBonus += 1
+
+func mult_shoot_force(multiplier):
+	ShootForce *= multiplier
+
+func add_1_spawn_point():
+	spawnPointsCount += 1
+	spawnPoints.get_child(spawnPointsCount - 1).show()

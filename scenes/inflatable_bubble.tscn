@@ -133,7 +133,7 @@ _data = {
 "explode": SubResource("Animation_yd5ry")
 }
 
-[node name="InflatableBubble" type="RigidBody2D"]
+[node name="InflatableBubble" type="RigidBody2D" groups=["bubble"]]
 collision_mask = 2
 gravity_scale = 0.0
 contact_monitor = true

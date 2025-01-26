@@ -7,4 +7,4 @@
 script = ExtResource("2_f7kp2")
 
 [node name="Description" parent="." index="0"]
-text = "+10% crescita gonfiabile"
+text = "+20% crescita gonfiabile"

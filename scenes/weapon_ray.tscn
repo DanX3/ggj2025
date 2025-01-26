@@ -39,3 +39,57 @@ rotation = -1.5708
 [node name="Cooldown3" type="Node" parent="ArrowPivot/Arrow/SpawnPoints/SpawnPoint3"]
 script = ExtResource("3_m27g1")
 duration = 0.22
+
+[node name="SpawnPoint4" type="Node2D" parent="ArrowPivot/Arrow/SpawnPoints"]
+visible = false
+position = Vector2(1.99998, -7.00001)
+rotation = -1.5708
+
+[node name="Cooldown3" type="Node" parent="ArrowPivot/Arrow/SpawnPoints/SpawnPoint4"]
+script = ExtResource("3_m27g1")
+duration = 0.22
+
+[node name="SpawnPoint5" type="Node2D" parent="ArrowPivot/Arrow/SpawnPoints"]
+visible = false
+position = Vector2(-0.000196457, -54)
+rotation = -1.5708
+
+[node name="Cooldown3" type="Node" parent="ArrowPivot/Arrow/SpawnPoints/SpawnPoint5"]
+script = ExtResource("3_m27g1")
+duration = 0.22
+
+[node name="SpawnPoint6" type="Node2D" parent="ArrowPivot/Arrow/SpawnPoints"]
+visible = false
+position = Vector2(26, -4.0001)
+rotation = -1.5708
+
+[node name="Cooldown3" type="Node" parent="ArrowPivot/Arrow/SpawnPoints/SpawnPoint6"]
+script = ExtResource("3_m27g1")
+duration = 0.22
+
+[node name="SpawnPoint7" type="Node2D" parent="ArrowPivot/Arrow/SpawnPoints"]
+visible = false
+position = Vector2(30.9998, -54.0001)
+rotation = -1.5708
+
+[node name="Cooldown3" type="Node" parent="ArrowPivot/Arrow/SpawnPoints/SpawnPoint7"]
+script = ExtResource("3_m27g1")
+duration = 0.22
+
+[node name="SpawnPoint8" type="Node2D" parent="ArrowPivot/Arrow/SpawnPoints"]
+visible = false
+position = Vector2(-19.0002, -55.9999)
+rotation = -1.5708
+
+[node name="Cooldown3" type="Node" parent="ArrowPivot/Arrow/SpawnPoints/SpawnPoint8"]
+script = ExtResource("3_m27g1")
+duration = 0.22
+
+[node name="SpawnPoint9" type="Node2D" parent="ArrowPivot/Arrow/SpawnPoints"]
+visible = false
+position = Vector2(-27, -4.9999)
+rotation = -1.5708
+
+[node name="Cooldown3" type="Node" parent="ArrowPivot/Arrow/SpawnPoints/SpawnPoint9"]
+script = ExtResource("3_m27g1")
+duration = 0.22

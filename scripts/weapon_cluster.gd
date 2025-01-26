@@ -6,11 +6,7 @@ var arrowDir := Vector2.ZERO
 @onready var arrowPivot := $ArrowPivot
 @onready var spawn = $ArrowPivot/Arrow/SpawnPoint
 var ShootForce = 600
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+var bubblesScale = 1.0
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("trigger"):
@@ -45,4 +41,12 @@ func _on_timer_timeout() -> void:
 		return
 	var pos = spawn.global_position + randf_range(10, 100) * Utils.rand_dir()
 	var bubble = Utils.spawn_child(pos, get_parent(), bubbleScene)
+	bubble.scale_size(bubblesScale)
+	
 	bubbles.push_back(bubble)
+
+func spawn_time_mult(multiplier: float):
+	$Timer.wait_time *= multiplier
+
+func add_bubbles_scale(bonus):
+	bubblesScale += bonus

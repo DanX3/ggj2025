@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg1lm2pqyrc2r"]
+[gd_scene load_steps=9 format=3 uid="uid://dg1lm2pqyrc2r"]
 
 [ext_resource type="Script" path="res://scripts/cluster_bubble.gd" id="1_kv5q2"]
 [ext_resource type="Texture2D" uid="uid://dk5u4u7jkt7u6" path="res://assets/bubble.png" id="2_cgwls"]
 [ext_resource type="Texture2D" uid="uid://djb1nheturu0c" path="res://assets/explosion.png" id="3_784nu"]
+[ext_resource type="Script" path="res://library/scripts/FreeAfter.gd" id="4_yqram"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k202t"]
 resource_local_to_scene = true
@@ -107,7 +108,7 @@ _data = {
 "explode": SubResource("Animation_yd5ry")
 }
 
-[node name="ClusterBubble" type="RigidBody2D"]
+[node name="ClusterBubble" type="RigidBody2D" groups=["bubble"]]
 collision_mask = 3
 gravity_scale = 0.0
 contact_monitor = true
@@ -131,5 +132,9 @@ libraries = {
 visible = false
 scale = Vector2(0.125341, 0.125341)
 texture = ExtResource("3_784nu")
+
+[node name="FreeAfter" type="Node" parent="."]
+script = ExtResource("4_yqram")
+duration = 10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

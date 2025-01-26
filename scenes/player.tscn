@@ -48,16 +48,16 @@ colors = PackedColorArray(0.121569, 0.121569, 0.121569, 1, 0.133196, 0.133196, 0
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5gt5k"]
 gradient = SubResource("Gradient_e3wqx")
-width = 258
-height = 41
+width = 150
+height = 5
 
 [sub_resource type="Gradient" id="Gradient_0lyjx"]
 colors = PackedColorArray(0.843137, 0, 0, 1, 1, 0.0862745, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_w6cmu"]
 gradient = SubResource("Gradient_0lyjx")
-width = 258
-height = 41
+width = 150
+height = 5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6prma"]
 radius = 40.7922
@@ -71,15 +71,6 @@ animation = &"walk_front"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="LifeBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 60.0
-offset_top = 968.0
-offset_right = 318.0
-offset_bottom = 1009.0
-value = 100.0
-texture_under = SubResource("GradientTexture2D_5gt5k")
-texture_progress = SubResource("GradientTexture2D_w6cmu")
-
 [node name="WeaponGear" parent="." instance=ExtResource("4_6dx4j")]
 
 [node name="WeaponBase" parent="." instance=ExtResource("4_vs1db")]
@@ -87,6 +78,15 @@ texture_progress = SubResource("GradientTexture2D_w6cmu")
 [node name="WeaponRay" parent="." instance=ExtResource("4_kxpih")]
 
 [node name="WeaponCluster" parent="." instance=ExtResource("6_p5rpg")]
+
+[node name="LifeBar" type="TextureProgressBar" parent="."]
+offset_left = -74.0
+offset_top = 44.0
+offset_right = 76.0
+offset_bottom = 49.0
+value = 100.0
+texture_under = SubResource("GradientTexture2D_5gt5k")
+texture_progress = SubResource("GradientTexture2D_w6cmu")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4

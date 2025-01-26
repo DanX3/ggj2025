@@ -6,6 +6,7 @@ var GrowPerSec = 10000
 var canGrow = true
 var size := 100
 var wasMoving = false;
+var explosionSize := 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,8 +36,8 @@ func stop_inflating(size := -1):
 
 func _on_body_entered(body: Node) -> void:
 	var explosionCircle = $ExplosionArea/CollisionShape2D.shape as CircleShape2D
-	explosionCircle.radius = 1.5 * ($CollisionShape2D.shape as CircleShape2D).radius
-	$Explosion.scale = 1.5 * $Sprite2D.scale
+	explosionCircle.radius = explosionSize * ($CollisionShape2D.shape as CircleShape2D).radius
+	$Explosion.scale = explosionSize * $Sprite2D.scale
 	$AnimationPlayer.play("explode")
 
 
@@ -47,3 +48,6 @@ func _on_explosion_area_body_entered(body: Node2D) -> void:
 	var enemy = body as Enemy
 	enemy.take_damage(sqrt(size / 50))
 	
+
+func mult_explosion_size(multiplier: float):
+	explosionSize *= multiplier

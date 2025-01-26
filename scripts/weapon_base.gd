@@ -8,6 +8,7 @@ var arrowDir := Vector2.ZERO
 var ShootForce = 1000
 @export var damage = 10
 var multiplierGrowth := 1.0
+var explosionSizeMult = 1.0
 
 func _physics_process(delta: float) -> void:
 	arrowDir = Vector2(Input.get_axis("move_left", "move_right"), 
@@ -23,8 +24,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 		
 	if Input.is_action_just_pressed("trigger"):
-		bubble = Utils.spawn_child(spawn.global_position, get_parent(), bubbleScene)
+		bubble = Utils.spawn_child(spawn.global_position, get_parent(), bubbleScene) as InflatableBubble
 		bubble.mult_growth(multiplierGrowth)
+		bubble.mult_explosion_size(explosionSizeMult)
 	
 	if Input.is_action_just_released("trigger") and bubble != null:
 		var dir = Vector2(cos(arrowPivot.rotation), sin(arrowPivot.rotation))
@@ -44,3 +46,9 @@ func mult_cooldown(multiplier: float):
 
 func mult_growth(multiplier: float):
 	multiplierGrowth += multiplier
+
+func mult_shoot_force(multiplier: float):
+	ShootForce *= multiplier
+
+func mult_explosion_size(multiplier: float):
+	explosionSizeMult += multiplier

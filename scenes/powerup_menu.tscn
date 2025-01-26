@@ -1,12 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1kxf84c42cne"]
+[gd_scene load_steps=16 format=3 uid="uid://b1kxf84c42cne"]
 
 [ext_resource type="Script" path="res://scripts/powerup_menu.gd" id="1_rlmnk"]
 [ext_resource type="PackedScene" uid="uid://db20aa8x310tw" path="res://scenes/powerup_cards/menocooldowngonfiabile.tscn" id="2_7tiue"]
 [ext_resource type="PackedScene" uid="uid://dv7cpu7xabvkh" path="res://scenes/powerup_cards/PiuCrescitaGonfiabile.tscn" id="3_tak64"]
 [ext_resource type="PackedScene" uid="uid://dg3qqc0twkwpp" path="res://scenes/powerup_cards/piudannogonfiabile.tscn" id="4_ialex"]
+[ext_resource type="PackedScene" uid="uid://rybvibdmkoio" path="res://scenes/powerup_cards/inflatableexplosionsize.tscn" id="5_8qhkl"]
 [ext_resource type="Texture2D" uid="uid://dgjfsillemx23" path="res://assets/T_X_X_Color_Casual.png" id="5_mnvsr"]
 [ext_resource type="Texture2D" uid="uid://bju28pqfjxy5r" path="res://assets/T_X_Y_Color_Casual.png" id="6_7lww6"]
+[ext_resource type="PackedScene" uid="uid://pd0etvho3xxk" path="res://scenes/powerup_cards/rayaddspawnpoint.tscn" id="6_tjtdi"]
+[ext_resource type="PackedScene" uid="uid://lwq00qro7i8n" path="res://scenes/powerup_cards/raydamage.tscn" id="7_c0psm"]
 [ext_resource type="Texture2D" uid="uid://dhed5fcubep3n" path="res://assets/T_X_B_Color_Casual.png" id="7_jvm7d"]
+[ext_resource type="PackedScene" uid="uid://bpaqdbqp7uh8r" path="res://scenes/powerup_cards/rayshootforce.tscn" id="8_70kbf"]
+[ext_resource type="PackedScene" uid="uid://n35eiqijh3en" path="res://scenes/powerup_cards/piuvelocitaproiettilegonfiabile.tscn" id="9_sekdd"]
 
 [sub_resource type="Animation" id="Animation_yjscr"]
 length = 0.001
@@ -53,7 +58,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rlmnk")
-powerups = Array[PackedScene]([ExtResource("2_7tiue"), ExtResource("3_tak64"), ExtResource("4_ialex")])
+powerups = Array[PackedScene]([ExtResource("2_7tiue"), ExtResource("3_tak64"), ExtResource("4_ialex"), ExtResource("5_8qhkl"), ExtResource("6_tjtdi"), ExtResource("7_c0psm"), ExtResource("8_70kbf"), ExtResource("9_sekdd")])
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

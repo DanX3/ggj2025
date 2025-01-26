@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://ykqvjxo68he"]
+
+[ext_resource type="PackedScene" uid="uid://ctrnxcpq8w8hj" path="res://scenes/powerup_card.tscn" id="1_1yhw6"]
+[ext_resource type="StyleBox" uid="uid://d3k5eqs1svv5u" path="res://scenes/powerup_cards/card_styles/stylebox_cluster.tres" id="2_0qcb2"]
+[ext_resource type="Script" path="res://scenes/powerup_cards/cluster_speedup.gd" id="3_jxv56"]
+
+[node name="Piudannogonfiabile" instance=ExtResource("1_1yhw6")]
+theme_override_styles/panel = ExtResource("2_0qcb2")
+script = ExtResource("3_jxv56")
+
+[node name="Description" parent="." index="0"]
+text = "+20% velocita' di spawn dei proiettili cluster"

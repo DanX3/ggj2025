@@ -3,7 +3,7 @@ class_name Player extends Node2D
 signal game_over
 
 @onready var weaponGear := $WeaponGear
-@onready var lifeBar = $CanvasLayer/LifeBar
+@onready var lifeBar = $LifeBar
 var weapon: Weapon = null
 var max_life = 100
 @onready var life = max_life
@@ -63,3 +63,9 @@ func get_weapon(index: int) -> Weapon:
 
 func heal():
 	life = max_life
+	lifeBar.value = max_life
+
+func increase_max_life(amount: int):
+	max_life += amount
+	life = max_life
+	lifeBar.value = max_life

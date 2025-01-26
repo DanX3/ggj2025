@@ -4,6 +4,7 @@ var waveIndex = 0
 var spawnIndex = 0
 var wavePowerLeft = 0
 var enemiesLeft = 0
+var isGameOver = false
 
 const WaveDurationSec = 30
 
@@ -26,6 +27,8 @@ func wave_start():
 	enemiesLeft = 0
 
 func wave_stop():
+	for bubble in get_tree().get_nodes_in_group("bubble"):
+		bubble.queue_free()
 	$Timer.stop()
 
 func _on_timer_timeout() -> void:
@@ -44,8 +47,8 @@ func _on_timer_timeout() -> void:
 func _enemy_died():
 	enemiesLeft -= 1
 	if enemiesLeft == 0:
-		print("wave finished")
-		$AnimationPlayer.play("show_powerup")
+		if not isGameOver:
+			$AnimationPlayer.play("show_powerup")
 
 
 func show_powerup():
@@ -53,6 +56,7 @@ func show_powerup():
 
 
 func _on_player_game_over() -> void:
+	isGameOver = true
 	$AnimationPlayer.play("game_over")
 
 func _unhandled_input(event: InputEvent) -> void:
