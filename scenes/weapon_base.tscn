@@ -20,4 +20,4 @@ rotation = -1.5708
 
 [node name="Cooldown" type="Node" parent="."]
 script = ExtResource("3_w4e45")
-duration = 0.3
+duration = 0.1

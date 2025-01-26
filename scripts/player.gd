@@ -1,6 +1,7 @@
 class_name Player extends Node2D
 
 signal game_over
+signal damaged
 
 @onready var weaponGear := $WeaponGear
 @onready var lifeBar = $LifeBar
@@ -9,6 +10,11 @@ var max_life = 100
 @onready var life = max_life
 @onready var alive = true
 
+@export var spriteFront: Sprite2D
+@export var spriteBack: Sprite2D
+@export var spriteLeft: Sprite2D
+@export var spriteRight: Sprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$WeaponBase.set_enabled(false)
@@ -16,11 +22,24 @@ func _ready() -> void:
 	$WeaponCluster.set_enabled(false)
 	_on_weapon_gear_equipped("base")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
+	var arrowDir = Vector2(Input.get_axis("move_left", "move_right"), 
+		Input.get_axis("move_up", "move_down"))
+	if arrowDir.length_squared() < 0.8:
+		return
+		
+	for s in $Sprites.get_children():
+		if s is Sprite2D:
+			s.hide()
+	
+	if arrowDir.x > 0.5:
+		spriteRight.show()
+	elif arrowDir.x < -0.5:
+		spriteLeft.show()
+	elif arrowDir.y > 0.5:
+		spriteBack.show()
+	elif arrowDir.y < -0.5:
+		spriteFront.show()
 
 func _on_weapon_gear_unequipped() -> void:
 	if weapon != null:
@@ -48,7 +67,8 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	life -= (body as Enemy).damage
 	lifeBar.value = life
 	body.queue_free()
-	
+	emit_signal("damaged")
+	$AnimationPlayer.play("damaged")
 	if life <= 0 and alive:
 		alive = false
 		emit_signal("game_over")

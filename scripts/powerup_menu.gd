@@ -6,6 +6,7 @@ signal done
 @onready var menu = $HBoxContainer
 
 func show_powerups():
+	print("poweruppp")
 	var ids = range(powerups.size())
 	ids.shuffle()
 	for i in range(3):

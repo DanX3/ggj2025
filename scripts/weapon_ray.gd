@@ -27,8 +27,9 @@ func _physics_process(delta: float) -> void:
 				cooldown.start()
 				var bubble = Utils.spawn_child(spawn.global_position, get_parent(), bubbleScene) as InflatableBubble
 				bubble.stop_inflating(100)
-				#bubble.call_deferred("stop_inflating")
-				bubble.apply_central_impulse(ShootForce * arrowDir)
+				bubble.set_meta("damage", 1 + damageBonus)
+				var dir = $ArrowPivot/Arrow/SpawnPoints.global_position.normalized()
+				bubble.apply_central_impulse(ShootForce * dir)
 			
 
 func add_damage_bonus(bonus):

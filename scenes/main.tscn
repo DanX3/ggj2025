@@ -1,20 +1,26 @@
-[gd_scene load_steps=24 format=3 uid="uid://bf0eejm07elpw"]
+[gd_scene load_steps=38 format=3 uid="uid://bf0eejm07elpw"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rq8oc"]
 [ext_resource type="Script" path="res://scripts/EnemyValue.gd" id="2_lttwi"]
 [ext_resource type="PackedScene" uid="uid://dtlnex55fc6bc" path="res://scenes/player.tscn" id="2_n4jtl"]
+[ext_resource type="PackedScene" uid="uid://m2wsn3l12efu" path="res://scenes/enemy_clown.tscn" id="3_sgfxe"]
 [ext_resource type="Script" path="res://library/scripts/Spawner.gd" id="3_tbw8t"]
 [ext_resource type="Script" path="res://scripts/Wave.gd" id="4_mt4tn"]
 [ext_resource type="PackedScene" uid="uid://dg1ix65ma8pnb" path="res://scenes/swan.tscn" id="4_qw7ut"]
 [ext_resource type="PackedScene" uid="uid://kfq1wyc1bdu3" path="res://scenes/bat_cluster.tscn" id="5_b5hyy"]
 [ext_resource type="PackedScene" uid="uid://ny2m4sxckvji" path="res://scenes/enemy2d.tscn" id="5_rbs0i"]
+[ext_resource type="PackedScene" uid="uid://bq772docug5ux" path="res://scenes/rabbit.tscn" id="6_7ke3u"]
+[ext_resource type="Texture2D" uid="uid://cydn2aek8oq7u" path="res://assets/SFONDO BASE.png" id="8_k8fux"]
 [ext_resource type="FontFile" uid="uid://c7v0mienpmo3f" path="res://assets/fonts/Ghostphobia.ttf" id="9_1j52s"]
+[ext_resource type="Texture2D" uid="uid://b5mkeb3i5avol" path="res://assets/CIELO.png" id="9_6e2um"]
 [ext_resource type="PackedScene" uid="uid://b1kxf84c42cne" path="res://scenes/powerup_menu.tscn" id="10_5e7u3"]
+[ext_resource type="Script" path="res://library/scripts/CameraShake.gd" id="13_8ukja"]
+[ext_resource type="Shader" path="res://library/shaders/vignette.gdshader" id="13_lberk"]
 
 [sub_resource type="Resource" id="Resource_7ninm"]
 script = ExtResource("2_lttwi")
-scene = ExtResource("5_rbs0i")
-value = 10
+scene = ExtResource("3_sgfxe")
+value = 50
 
 [sub_resource type="Resource" id="Resource_vp6wx"]
 script = ExtResource("2_lttwi")
@@ -26,20 +32,64 @@ script = ExtResource("2_lttwi")
 scene = ExtResource("5_b5hyy")
 value = 15
 
+[sub_resource type="Resource" id="Resource_lvk8k"]
+script = ExtResource("2_lttwi")
+scene = ExtResource("6_7ke3u")
+value = 5
+
 [sub_resource type="Resource" id="Resource_wej4p"]
 script = ExtResource("4_mt4tn")
 power = 100
-sequence = Array[int]([0, 0, 0, 1])
+spawnPeriod_s = 2.0
+sequence = Array[int]([3, 3, 3, 1])
 
 [sub_resource type="Resource" id="Resource_v0syq"]
 script = ExtResource("4_mt4tn")
 power = 130
-sequence = Array[int]([0, 0, 0, 2])
+spawnPeriod_s = 2.0
+sequence = Array[int]([3, 3, 1])
 
 [sub_resource type="Resource" id="Resource_a4u5m"]
 script = ExtResource("4_mt4tn")
 power = 150
-sequence = Array[int]([0, 0, 0, 0])
+spawnPeriod_s = 2.0
+sequence = Array[int]([3, 3, 1, 2])
+
+[sub_resource type="Resource" id="Resource_s82im"]
+script = ExtResource("4_mt4tn")
+power = 170
+spawnPeriod_s = 1.8
+sequence = Array[int]([1, 1, 3])
+
+[sub_resource type="Resource" id="Resource_akw3j"]
+script = ExtResource("4_mt4tn")
+power = 200
+spawnPeriod_s = 1.8
+sequence = Array[int]([3, 3, 3, 0])
+
+[sub_resource type="Resource" id="Resource_kurjd"]
+script = ExtResource("4_mt4tn")
+power = 200
+spawnPeriod_s = 1.8
+sequence = Array[int]([2, 3, 3, 0])
+
+[sub_resource type="Resource" id="Resource_kj8ox"]
+script = ExtResource("4_mt4tn")
+power = 235
+spawnPeriod_s = 1.7
+sequence = Array[int]([1, 3, 3, 0])
+
+[sub_resource type="Resource" id="Resource_iw8pp"]
+script = ExtResource("4_mt4tn")
+power = 260
+spawnPeriod_s = 1.6
+sequence = Array[int]([1, 3, 3, 0])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3yka5"]
+shader = ExtResource("13_lberk")
+shader_parameter/outerRadius = 1.0
+shader_parameter/MainAlpha = 0.473
+shader_parameter/vignette_color = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gnym3"]
 
@@ -191,10 +241,10 @@ tracks/0/path = NodePath("PowerupMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, true]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -203,12 +253,24 @@ tracks/1/path = NodePath("PowerupMenu")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"show_powerups"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 13), Vector2(0, -1067)]
 }
 
 [sub_resource type="Animation" id="Animation_brvru"]
@@ -292,14 +354,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false]
 }
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(2),
+
+[sub_resource type="Animation" id="Animation_pr8xc"]
+resource_name = "on_powerup_done"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, -1067), Vector2(0, 13)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -311,6 +389,7 @@ tracks/3/keys = {
 _data = {
 "RESET": SubResource("Animation_os6mn"),
 "game_over": SubResource("Animation_v77rn"),
+"on_powerup_done": SubResource("Animation_pr8xc"),
 "show_powerup": SubResource("Animation_tg6ri"),
 "wave_finished": SubResource("Animation_brvru"),
 "wave_start": SubResource("Animation_bp44a")
@@ -318,8 +397,16 @@ _data = {
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_rq8oc")
-Enemies = Array[ExtResource("2_lttwi")]([SubResource("Resource_7ninm"), SubResource("Resource_vp6wx"), SubResource("Resource_xvwlh")])
-Waves = Array[ExtResource("4_mt4tn")]([SubResource("Resource_wej4p"), SubResource("Resource_v0syq"), SubResource("Resource_a4u5m")])
+Enemies = Array[ExtResource("2_lttwi")]([SubResource("Resource_7ninm"), SubResource("Resource_vp6wx"), SubResource("Resource_xvwlh"), SubResource("Resource_lvk8k")])
+Waves = Array[ExtResource("4_mt4tn")]([SubResource("Resource_wej4p"), SubResource("Resource_v0syq"), SubResource("Resource_a4u5m"), SubResource("Resource_s82im"), SubResource("Resource_akw3j"), SubResource("Resource_kurjd"), SubResource("Resource_kj8ox"), SubResource("Resource_iw8pp")])
+
+[node name="Cielo" type="Sprite2D" parent="."]
+position = Vector2(0, -1062)
+texture = ExtResource("9_6e2um")
+
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(0, 13)
+texture = ExtResource("8_k8fux")
 
 [node name="Player" parent="." instance=ExtResource("2_n4jtl")]
 
@@ -327,7 +414,7 @@ Waves = Array[ExtResource("4_mt4tn")]([SubResource("Resource_wej4p"), SubResourc
 script = ExtResource("3_tbw8t")
 node_scene = ExtResource("5_rbs0i")
 parent_path = "../"
-rects = Array[Rect2]([Rect2(-1200, -600, 100, 1200), Rect2(1200, -600, 100, 1200), Rect2(-1000, 700, 2000, 100), Rect2(-1000, -800, 2000, 100)])
+rects = Array[Rect2]([Rect2(-1100, -600, 100, 1200), Rect2(1000, -600, 100, 1200), Rect2(-1000, 600, 2000, 100), Rect2(-1000, -700, 2000, 100)])
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
@@ -335,7 +422,19 @@ wait_time = 2.0
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -9)
 
+[node name="CameraShake" type="Node" parent="Camera2D"]
+script = ExtResource("13_8ukja")
+duration_s = 0.5
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_3yka5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 visible = false
@@ -407,6 +506,7 @@ libraries = {
 
 [node name="PowerupMenu" parent="." instance=ExtResource("10_5e7u3")]
 
+[connection signal="damaged" from="Player" to="." method="_on_player_damaged"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="done" from="PowerupMenu" to="." method="_on_powerup_menu_done"]

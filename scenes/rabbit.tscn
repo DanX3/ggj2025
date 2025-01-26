@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq772docug5ux"]
+
+[ext_resource type="PackedScene" uid="uid://ny2m4sxckvji" path="res://scenes/enemy2d.tscn" id="1_qgl7h"]
+[ext_resource type="Script" path="res://scripts/rabbit.gd" id="2_687na"]
+[ext_resource type="Texture2D" uid="uid://c7uqut5grrsei" path="res://assets/sprites/rabbit_base.tres" id="3_c4560"]
+[ext_resource type="Texture2D" uid="uid://ddvub4poxnf7r" path="res://assets/sprites/rabbit_jump.tres" id="4_c25so"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86dc0"]
+size = Vector2(62, 122)
+
+[node name="Rabbit" instance=ExtResource("1_qgl7h")]
+script = ExtResource("2_687na")
+damage = 10
+SPEED = 300.0
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -7)
+scale = Vector2(0.585, 0.585)
+texture = ExtResource("3_c4560")
+
+[node name="SpriteJump" type="Sprite2D" parent="." index="1"]
+position = Vector2(0, -7)
+scale = Vector2(0.52, 0.52)
+texture = ExtResource("4_c25so")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_86dc0")
+
+[node name="Health" parent="." index="3"]
+max_health = 5
+
+[node name="Timer" type="Timer" parent="." index="4"]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

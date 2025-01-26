@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://2l8j2n3pldh6"]
+
+[ext_resource type="Texture2D" uid="uid://po86ijun50n6" path="res://assets/sprites/bambina.png" id="1_vrc5w"]
+
+[resource]
+atlas = ExtResource("1_vrc5w")
+region = Rect2(438, 57, 109, 220)

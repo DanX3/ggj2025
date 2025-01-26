@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg1ix65ma8pnb"]
+[gd_scene load_steps=7 format=3 uid="uid://dg1ix65ma8pnb"]
 
 [ext_resource type="PackedScene" uid="uid://ny2m4sxckvji" path="res://scenes/enemy2d.tscn" id="1_swdux"]
+[ext_resource type="Texture2D" uid="uid://7io1rk1hfcw" path="res://assets/sprites/cigno 370.png" id="2_yyvog"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0rd6"]
-size = Vector2(50, 172)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vuopp"]
+radius = 95.7079
 
 [sub_resource type="Animation" id="Animation_dhpw0"]
 length = 0.001
@@ -70,17 +71,20 @@ _data = {
 
 [node name="Enemy" instance=ExtResource("1_swdux")]
 damage = 20
+SPEED = 120.0
 
 [node name="Sprite2D" parent="." index="0"]
+visible = true
 position = Vector2(0, -66)
-scale = Vector2(8.33333, 11.8571)
+scale = Vector2(0.594595, 0.594595)
+texture = ExtResource("2_yyvog")
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -63)
-shape = SubResource("RectangleShape2D_a0rd6")
+shape = SubResource("CircleShape2D_vuopp")
 
 [node name="Health" parent="." index="2"]
-max_health = 30
+max_health = 20
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {

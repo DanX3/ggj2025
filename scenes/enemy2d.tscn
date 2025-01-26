@@ -4,26 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://c8l4f1xkvw35g" path="res://library/assets/minimapIcon_exclamationRed.png" id="2_g5ng5"]
 [ext_resource type="Script" path="res://library/scripts/Health.gd" id="3_0d7a2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gy4mc"]
-radius = 28.4605
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_basw3"]
+size = Vector2(108, 226)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_kamnt")
 damage = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(7.66667, 3.61429)
+visible = false
 texture = ExtResource("2_g5ng5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_gy4mc")
+position = Vector2(14, 9)
+shape = SubResource("RectangleShape2D_basw3")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_0d7a2")
 max_health = 10
-
-[node name="Pivot" type="Node2D" parent="."]
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]

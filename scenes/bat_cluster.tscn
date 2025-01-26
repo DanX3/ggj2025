@@ -9,10 +9,7 @@
 script = ExtResource("2_3gc7l")
 batCount = 10
 
-[node name="Sprite2D" parent="." index="0"]
-visible = false
-
-[node name="Spawner" type="Node2D" parent="." index="4"]
+[node name="Spawner" type="Node2D" parent="." index="3"]
 script = ExtResource("3_c6ga6")
 node_scene = ExtResource("4_k007k")
 parent_path = "../../"

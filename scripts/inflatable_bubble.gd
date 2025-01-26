@@ -6,7 +6,7 @@ var GrowPerSec = 10000
 var canGrow = true
 var size := 100
 var wasMoving = false;
-var explosionSize := 1.0
+var explosionSize := 1.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,7 +46,8 @@ func _on_explosion_area_body_entered(body: Node2D) -> void:
 		return
 	
 	var enemy = body as Enemy
-	enemy.take_damage(sqrt(size / 50))
+	var damage = get_meta("damage", sqrt(size / 100))
+	enemy.take_damage(damage)
 	
 
 func mult_explosion_size(multiplier: float):

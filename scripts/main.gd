@@ -3,7 +3,6 @@ extends Node2D
 var waveIndex = 0
 var spawnIndex = 0
 var wavePowerLeft = 0
-var enemiesLeft = 0
 var isGameOver = false
 
 const WaveDurationSec = 30
@@ -17,14 +16,16 @@ const WaveDurationSec = 30
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AnimationPlayer.play("wave_start")
+	wave_start()
 
 func wave_start():
+	waveLabel.text = "Wave " + str(waveIndex + 1)
 	$Player.heal()
+	$Timer.wait_time = Waves[waveIndex].spawnPeriod_s
 	$Timer.start()
 	spawnIndex = 0
 	wavePowerLeft = Waves[waveIndex].power
-	enemiesLeft = 0
+	$AnimationPlayer.play("wave_start")
 
 func wave_stop():
 	for bubble in get_tree().get_nodes_in_group("bubble"):
@@ -36,23 +37,24 @@ func _on_timer_timeout() -> void:
 	var enemyIndex = sequence[spawnIndex]
 	var enemyEntry = Enemies[enemyIndex]
 	if enemyEntry.value <= wavePowerLeft:
-		var newEnemy = $Spawner.spawn(enemyEntry.scene)
+		var newEnemy = $Spawner.spawn(enemyEntry.scene) as Enemy
+		# reduce spaeed of enemies placed up and down
+		# since there is less time to shoot them down
+		var speedFactor = 0.5 + 0.5 * abs(Vector2.RIGHT.dot(newEnemy.global_position.normalized()))
+		newEnemy.SPEED *= speedFactor
+		
 		spawnIndex = (spawnIndex + 1) % sequence.size()
 		wavePowerLeft -= enemyEntry.value
-		enemiesLeft += 1
 		newEnemy.tree_exited.connect(_enemy_died)
 	else:
 		$Timer.stop()
 
 func _enemy_died():
-	enemiesLeft -= 1
-	if enemiesLeft == 0:
+	if get_tree() == null:
+		return
+	if get_tree().get_nodes_in_group("enemy").is_empty():
 		if not isGameOver:
 			$AnimationPlayer.play("show_powerup")
-
-
-func show_powerup():
-	pass
 
 
 func _on_player_game_over() -> void:
@@ -65,10 +67,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_powerup_menu_done() -> void:
+	$AnimationPlayer.play("on_powerup_done")
 	waveIndex += 1
 	if waveIndex >= Waves.size():
 		print("You win!!")
 		get_tree().quit()
 		return
-		
-	wave_start()
+
+
+func _on_player_damaged() -> void:
+	$Camera2D/CameraShake.shake()

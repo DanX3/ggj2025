@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name Spawner extends Node2D
 
 @export var node_scene: PackedScene
@@ -56,8 +56,8 @@ func _process(delta):
 		queue_redraw()
 
 
-func _draw():
-	if rects != null:
-		for rect in rects:
-			if rect != null:
-				draw_rect(rect, Color(Color.DODGER_BLUE, 0.5))
+#func _draw():
+	#if rects != null:
+		#for rect in rects:
+			#if rect != null:
+				#draw_rect(rect, Color(Color.DODGER_BLUE, 0.5))

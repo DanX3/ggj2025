@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://m2wsn3l12efu"]
+
+[ext_resource type="PackedScene" uid="uid://ny2m4sxckvji" path="res://scenes/enemy2d.tscn" id="1_wi6s4"]
+[ext_resource type="Texture2D" uid="uid://2mxjlk1c3d0b" path="res://assets/sprites/spritesheet clown.png" id="2_1tu2c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn3jf"]
+atlas = ExtResource("2_1tu2c")
+region = Rect2(0, 0, 206, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rublg"]
+atlas = ExtResource("2_1tu2c")
+region = Rect2(206, 0, 206, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3pqo7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn3jf")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_rublg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Enemy" instance=ExtResource("1_wi6s4")]
+
+[node name="Health" parent="." index="2"]
+max_health = 50
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_3pqo7")

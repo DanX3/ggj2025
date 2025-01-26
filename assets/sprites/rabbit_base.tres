@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c7uqut5grrsei"]
+
+[ext_resource type="Texture2D" uid="uid://by7xssliaucff" path="res://assets/sprites/SPRITECONIGLIO.png" id="1_xxib1"]
+
+[resource]
+atlas = ExtResource("1_xxib1")
+region = Rect2(25, 43, 126, 226)

@@ -1,12 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq37hlfjuujyx"]
+[gd_scene load_steps=8 format=3 uid="uid://bq37hlfjuujyx"]
 
 [ext_resource type="PackedScene" uid="uid://ny2m4sxckvji" path="res://scenes/enemy2d.tscn" id="1_ydyk5"]
+[ext_resource type="Script" path="res://scripts/bat.gd" id="2_kdd0c"]
+[ext_resource type="Texture2D" uid="uid://b8o41oywiux8v" path="res://assets/sprites/1spritesheet pipistrello.png" id="2_wu7qc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uy5xq"]
+resource_local_to_scene = true
+radius = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40htp"]
+atlas = ExtResource("2_wu7qc")
+region = Rect2(0, 0, 160, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmwg0"]
+atlas = ExtResource("2_wu7qc")
+region = Rect2(160, 0, 160, 118)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dr7tq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40htp")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_dmwg0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Enemy" instance=ExtResource("1_ydyk5")]
-damage = 2
+script = ExtResource("2_kdd0c")
+damage = 10
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(0, 0, 0, 1)
 
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(1, 2)
+shape = SubResource("CircleShape2D_uy5xq")
+
 [node name="Health" parent="." index="2"]
 max_health = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+position = Vector2(1, -8)
+sprite_frames = SubResource("SpriteFrames_dr7tq")
+frame_progress = 0.398531
+
+[node name="Timer" type="Timer" parent="." index="4"]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

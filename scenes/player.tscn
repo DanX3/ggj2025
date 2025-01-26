@@ -1,47 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://dtlnex55fc6bc"]
+[gd_scene load_steps=18 format=3 uid="uid://dtlnex55fc6bc"]
 
-[ext_resource type="Texture2D" uid="uid://b02fivnjl3nem" path="res://assets/AjFP5.png" id="1_e4qyu"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_jkvq8"]
+[ext_resource type="Texture2D" uid="uid://2l8j2n3pldh6" path="res://assets/sprites/girl_back.tres" id="2_4jprv"]
+[ext_resource type="Texture2D" uid="uid://dyd1opdcva8vu" path="res://assets/sprites/girl_left.tres" id="3_depa0"]
 [ext_resource type="PackedScene" uid="uid://bbj6vr7km3k8k" path="res://scenes/weapon_gear.tscn" id="4_6dx4j"]
 [ext_resource type="PackedScene" uid="uid://cr1ngpvxkmdn0" path="res://scenes/weapon_ray.tscn" id="4_kxpih"]
+[ext_resource type="Texture2D" uid="uid://bartmrmepbfqf" path="res://assets/sprites/girl_right.tres" id="4_lysy2"]
 [ext_resource type="PackedScene" uid="uid://b8fxuqvyqi4cf" path="res://scenes/weapon_base.tscn" id="4_vs1db"]
+[ext_resource type="Texture2D" uid="uid://bvnolae1yrjyu" path="res://assets/sprites/girl_front.tres" id="5_37ik4"]
 [ext_resource type="PackedScene" uid="uid://b06c2o0yf7kow" path="res://scenes/weapon_cluster.tscn" id="6_p5rpg"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5lnje"]
-atlas = ExtResource("1_e4qyu")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_85t88"]
-atlas = ExtResource("1_e4qyu")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yv8pw"]
-atlas = ExtResource("1_e4qyu")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qb7qy"]
-atlas = ExtResource("1_e4qyu")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gfspe"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5lnje")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_85t88")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yv8pw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qb7qy")
-}],
-"loop": true,
-"name": &"walk_front",
-"speed": 5.0
-}]
 
 [sub_resource type="Gradient" id="Gradient_e3wqx"]
 colors = PackedColorArray(0.121569, 0.121569, 0.121569, 1, 0.133196, 0.133196, 0.133196, 1)
@@ -62,12 +29,67 @@ height = 5
 [sub_resource type="CircleShape2D" id="CircleShape2D_6prma"]
 radius = 40.7922
 
-[node name="Player" type="Node2D" groups=["player"]]
-script = ExtResource("1_jkvq8")
+[sub_resource type="Animation" id="Animation_3prok"]
+resource_name = "damaged"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.194208, 0.244208, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.23, 0.23, 1), Color(1, 1, 1, 1), Color(1, 0.23, 0.23, 1), Color(1, 1, 1, 1), Color(1, 0.23, 0.23, 1), Color(1, 1, 1, 1), Color(1, 0.23, 0.23, 1), Color(1, 1, 1, 1)]
+}
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_gfspe")
-animation = &"walk_front"
+[sub_resource type="Animation" id="Animation_4igch"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1uipo"]
+_data = {
+"RESET": SubResource("Animation_4igch"),
+"damaged": SubResource("Animation_3prok")
+}
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("spriteFront", "spriteBack", "spriteLeft", "spriteRight") groups=["player"]]
+script = ExtResource("1_jkvq8")
+spriteFront = NodePath("Sprites/Front")
+spriteBack = NodePath("Sprites/Back")
+spriteLeft = NodePath("Sprites/Left")
+spriteRight = NodePath("Sprites/Right")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Back" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("2_4jprv")
+
+[node name="Left" type="Sprite2D" parent="Sprites"]
+visible = false
+texture = ExtResource("3_depa0")
+
+[node name="Right" type="Sprite2D" parent="Sprites"]
+visible = false
+texture = ExtResource("4_lysy2")
+
+[node name="Front" type="Sprite2D" parent="Sprites"]
+visible = false
+texture = ExtResource("5_37ik4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -94,6 +116,12 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_6prma")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprites")
+libraries = {
+"": SubResource("AnimationLibrary_1uipo")
+}
 
 [connection signal="equipped" from="WeaponGear" to="." method="_on_weapon_gear_equipped"]
 [connection signal="unequipped" from="WeaponGear" to="." method="_on_weapon_gear_unequipped"]
