@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dcdhd4avhdbq7"]
 
-[ext_resource type="Texture2D" uid="uid://dk5u4u7jkt7u6" path="res://assets/bubble.png" id="1_85fca"]
 [ext_resource type="Script" path="res://scripts/inflatable_bubble.gd" id="1_h8m2a"]
+[ext_resource type="Texture2D" uid="uid://dhgtmpkn3u1jx" path="res://assets/bolla.png" id="2_y2li6"]
 [ext_resource type="Texture2D" uid="uid://djb1nheturu0c" path="res://assets/explosion.png" id="3_fm0q5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k202t"]
@@ -145,7 +145,7 @@ script = ExtResource("1_h8m2a")
 shape = SubResource("CircleShape2D_k202t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_85fca")
+texture = ExtResource("2_y2li6")
 
 [node name="ExplosionArea" type="Area2D" parent="."]
 collision_mask = 2
