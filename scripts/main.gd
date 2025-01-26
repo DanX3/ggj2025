@@ -53,7 +53,7 @@ func _enemy_died():
 	if get_tree() == null:
 		return
 	if get_tree().get_nodes_in_group("enemy").is_empty():
-		if waveIndex >= Waves.size():
+		if waveIndex + 1 >= Waves.size():
 			$AnimationPlayer.play("win")
 			return
 		if not isGameOver:
