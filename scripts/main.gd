@@ -53,6 +53,9 @@ func _enemy_died():
 	if get_tree() == null:
 		return
 	if get_tree().get_nodes_in_group("enemy").is_empty():
+		if waveIndex >= Waves.size():
+			$AnimationPlayer.play("win")
+			return
 		if not isGameOver:
 			$AnimationPlayer.play("show_powerup")
 
@@ -70,10 +73,11 @@ func _on_powerup_menu_done() -> void:
 	$AnimationPlayer.play("on_powerup_done")
 	waveIndex += 1
 	if waveIndex >= Waves.size():
-		print("You win!!")
-		get_tree().quit()
-		return
+		$AnimationPlayer.play("win")
 
 
 func _on_player_damaged() -> void:
 	$Camera2D/CameraShake.shake()
+
+func reload_scene():
+	get_tree().change_scene_to_file("res://scenes/main.tscn")

@@ -60,14 +60,14 @@ func _rotate(dir: int):
 			var nextWeapon = (gear.get_child(selectedWeaponIndex) as WeaponIcon).nextIcon
 			selectedWeaponIndex = nextWeapon.get_index()
 			steps += 1
-			if nextWeapon.visible:
+			if nextWeapon.visible and nextWeapon.name != "wall":
 				break
 	else:
 		while true:
 			var prevWeapon = (gear.get_child(selectedWeaponIndex) as WeaponIcon).prevIcon
 			selectedWeaponIndex = prevWeapon.get_index()
 			steps -= 1
-			if prevWeapon.visible:
+			if prevWeapon.visible and prevWeapon.name != "wall":
 				break
 	
 	var angleDifference = -steps * 0.5 * PI

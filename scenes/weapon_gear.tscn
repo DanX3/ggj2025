@@ -106,6 +106,7 @@ nextIcon = NodePath("../wall")
 prevIcon = NodePath("../ray")
 
 [node name="wall" parent="CanvasLayer/WeaponGear" node_paths=PackedStringArray("nextIcon", "prevIcon") instance=ExtResource("3_cad2r")]
+visible = false
 layout_mode = 0
 offset_left = 261.0
 offset_top = 103.0

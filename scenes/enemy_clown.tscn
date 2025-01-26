@@ -32,3 +32,4 @@ max_health = 50
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_3pqo7")
+autoplay = "default"

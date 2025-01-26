@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bf0eejm07elpw"]
+[gd_scene load_steps=41 format=3 uid="uid://bf0eejm07elpw"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rq8oc"]
 [ext_resource type="Script" path="res://scripts/EnemyValue.gd" id="2_lttwi"]
@@ -18,6 +18,7 @@
 [ext_resource type="Shader" path="res://library/shaders/vignette.gdshader" id="13_lberk"]
 [ext_resource type="AudioStream" uid="uid://xfxvoesdv3j5" path="res://assets/audio/bg.mp3" id="17_62bbo"]
 [ext_resource type="AudioStream" uid="uid://bdgae71rsp42h" path="res://assets/audio/powerup.mp3" id="18_ffpg0"]
+[ext_resource type="Texture2D" uid="uid://dhdffols7ywev" path="res://assets/vittoria.png" id="19_rnp8q"]
 
 [sub_resource type="Resource" id="Resource_7ninm"]
 script = ExtResource("2_lttwi")
@@ -48,52 +49,50 @@ sequence = Array[int]([3, 3, 3, 1])
 [sub_resource type="Resource" id="Resource_v0syq"]
 script = ExtResource("4_mt4tn")
 power = 130
-spawnPeriod_s = 2.0
+spawnPeriod_s = 1.9
 sequence = Array[int]([3, 3, 1])
 
 [sub_resource type="Resource" id="Resource_a4u5m"]
 script = ExtResource("4_mt4tn")
 power = 150
-spawnPeriod_s = 2.0
+spawnPeriod_s = 1.8
 sequence = Array[int]([3, 3, 1, 2])
 
 [sub_resource type="Resource" id="Resource_s82im"]
 script = ExtResource("4_mt4tn")
 power = 170
-spawnPeriod_s = 1.8
+spawnPeriod_s = 1.6
 sequence = Array[int]([1, 1, 3])
 
 [sub_resource type="Resource" id="Resource_akw3j"]
 script = ExtResource("4_mt4tn")
 power = 200
-spawnPeriod_s = 1.8
+spawnPeriod_s = 1.2
 sequence = Array[int]([3, 3, 3, 0])
 
 [sub_resource type="Resource" id="Resource_kurjd"]
 script = ExtResource("4_mt4tn")
 power = 200
-spawnPeriod_s = 1.8
+spawnPeriod_s = 1.1
 sequence = Array[int]([2, 3, 3, 0])
 
 [sub_resource type="Resource" id="Resource_kj8ox"]
 script = ExtResource("4_mt4tn")
 power = 235
-spawnPeriod_s = 1.7
+spawnPeriod_s = 1.0
 sequence = Array[int]([1, 3, 3, 0])
 
 [sub_resource type="Resource" id="Resource_iw8pp"]
 script = ExtResource("4_mt4tn")
-power = 260
-spawnPeriod_s = 1.6
-sequence = Array[int]([1, 3, 3, 0])
+power = 350
+spawnPeriod_s = 0.9
+sequence = Array[int]([0, 0, 3, 0])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3yka5"]
 shader = ExtResource("13_lberk")
 shader_parameter/outerRadius = 1.0
 shader_parameter/MainAlpha = 0.473
 shader_parameter/vignette_color = null
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gnym3"]
 
 [sub_resource type="Animation" id="Animation_os6mn"]
 length = 0.001
@@ -148,7 +147,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/4/path = NodePath("CanvasLayer/Control:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -160,19 +159,19 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CanvasLayer/Control:modulate")
+tracks/5/path = NodePath(".:canRestart")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath(".:canRestart")
+tracks/6/path = NodePath("PowerupMenu:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -184,38 +183,62 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("PowerupMenu:visible")
+tracks/7/path = NodePath("BGMusic:volume_db")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [0.0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("BGMusic:volume_db")
+tracks/8/path = NodePath("PowerupMusic:volume_db")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [-80.0]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("PowerupMusic:volume_db")
+tracks/9/path = NodePath("CanvasLayer/ColorRect2:material:shader_parameter/MainAlpha")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-80.0]
+"values": [0.473]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CanvasLayer2/ColorRect:color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CanvasLayer2/Victory:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_v77rn"]
@@ -224,38 +247,56 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/path = NodePath("CanvasLayer/Control:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.109804, 0.109804, 0.164706, 0), Color(0.109804, 0.109804, 0.164706, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/Control:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(2.73333, 3.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0.43, 0.43, 0), Color(1, 0.2, 0.2, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:canRestart")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:canRestart")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(3.63333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pr8xc"]
+resource_name = "on_powerup_done"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, -1067), Vector2(0, 13)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"wave_start"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_tg6ri"]
@@ -429,33 +470,57 @@ tracks/4/keys = {
 "values": [-80.0]
 }
 
-[sub_resource type="Animation" id="Animation_pr8xc"]
-resource_name = "on_powerup_done"
-length = 1.5
+[sub_resource type="Animation" id="Animation_4w3v0"]
+resource_name = "win"
+length = 7.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
+tracks/0/path = NodePath("CanvasLayer/ColorRect2:material:shader_parameter/MainAlpha")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -1067), Vector2(0, 13)]
+"values": [0.473, 0.0]
 }
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("CanvasLayer2/ColorRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.5),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer2/Victory:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.3, 3, 4.76667, 6.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"wave_start"
+"method": &"reload_scene"
 }]
 }
 
@@ -466,13 +531,14 @@ _data = {
 "on_powerup_done": SubResource("Animation_pr8xc"),
 "show_powerup": SubResource("Animation_tg6ri"),
 "wave_finished": SubResource("Animation_brvru"),
-"wave_start": SubResource("Animation_bp44a")
+"wave_start": SubResource("Animation_bp44a"),
+"win": SubResource("Animation_4w3v0")
 }
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_rq8oc")
 Enemies = Array[ExtResource("2_lttwi")]([SubResource("Resource_7ninm"), SubResource("Resource_vp6wx"), SubResource("Resource_xvwlh"), SubResource("Resource_lvk8k")])
-Waves = Array[ExtResource("4_mt4tn")]([SubResource("Resource_wej4p"), SubResource("Resource_v0syq"), SubResource("Resource_a4u5m"), SubResource("Resource_s82im"), SubResource("Resource_akw3j"), SubResource("Resource_kurjd"), SubResource("Resource_kj8ox"), SubResource("Resource_iw8pp")])
+Waves = Array[ExtResource("4_mt4tn")]([SubResource("Resource_wej4p"), SubResource("Resource_v0syq"), SubResource("Resource_a4u5m"), SubResource("Resource_s82im"), SubResource("Resource_akw3j"), SubResource("Resource_kurjd"), SubResource("Resource_kj8ox"), SubResource("Resource_iw8pp"), SubResource("Resource_iw8pp"), SubResource("Resource_iw8pp")])
 
 [node name="Cielo" type="Sprite2D" parent="."]
 position = Vector2(0, -1062)
@@ -524,15 +590,6 @@ theme_override_fonts/font = ExtResource("9_1j52s")
 theme_override_font_sizes/font_size = 144
 text = "Start"
 horizontal_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_gnym3")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
@@ -586,6 +643,26 @@ stream = ExtResource("17_62bbo")
 [node name="PowerupMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_ffpg0")
 volume_db = -80.0
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)
+
+[node name="Victory" type="TextureRect" parent="CanvasLayer2"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("19_rnp8q")
 
 [connection signal="damaged" from="Player" to="." method="_on_player_damaged"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
