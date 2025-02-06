@@ -33,6 +33,7 @@ script = ExtResource("3_m27g1")
 duration = 0.21
 
 [node name="SpawnPoint3" type="Node2D" parent="ArrowPivot/Arrow/SpawnPoints"]
+visible = false
 position = Vector2(20.9999, -30.0001)
 rotation = -1.5708
 

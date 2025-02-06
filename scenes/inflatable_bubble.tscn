@@ -1,8 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcdhd4avhdbq7"]
+[gd_scene load_steps=14 format=3 uid="uid://dcdhd4avhdbq7"]
 
 [ext_resource type="Script" path="res://scripts/inflatable_bubble.gd" id="1_h8m2a"]
 [ext_resource type="Texture2D" uid="uid://dhgtmpkn3u1jx" path="res://assets/bolla.png" id="2_y2li6"]
 [ext_resource type="Texture2D" uid="uid://djb1nheturu0c" path="res://assets/explosion.png" id="3_fm0q5"]
+[ext_resource type="AudioStream" uid="uid://w8d0oj7smoud" path="res://assets/audio/UI_Beep_Double_Quick_Bright_stereo.wav" id="4_nanat"]
+[ext_resource type="AudioStream" uid="uid://bdhmi2eko10f" path="res://assets/audio/UI_Beep_Double_Quick_Deep_Muffled_stereo.wav" id="5_l4yae"]
+[ext_resource type="AudioStream" uid="uid://3dedx5nbntwt" path="res://assets/audio/UI_Beep_Single_Clean_Dark_stereo.wav" id="6_f3srs"]
+[ext_resource type="AudioStream" uid="uid://bvvdc75wfkj06" path="res://assets/audio/UI_Beep_Single_Clean_stereo.wav" id="7_3u445"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k202t"]
 resource_local_to_scene = true
@@ -60,10 +64,22 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_yd5ry"]
 resource_name = "explode"
-length = 0.1
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -83,7 +99,7 @@ tracks/1/path = NodePath("Sprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.0666667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -95,10 +111,10 @@ tracks/2/path = NodePath("Explosion:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -107,7 +123,7 @@ tracks/3/path = NodePath("ExplosionArea/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.0666667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -119,12 +135,24 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.1),
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CPUParticles2D:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u838j"]
@@ -132,6 +160,10 @@ _data = {
 "RESET": SubResource("Animation_eiwdm"),
 "explode": SubResource("Animation_yd5ry")
 }
+
+[sub_resource type="Curve" id="Curve_hp7ot"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.996241, 0.0126218), -0.0878988, 0.0, 0, 0]
+point_count = 2
 
 [node name="InflatableBubble" type="RigidBody2D" groups=["bubble"]]
 collision_mask = 2
@@ -162,6 +194,39 @@ libraries = {
 [node name="Explosion" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("3_fm0q5")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+emission_shape = 2
+emission_sphere_radius = 83.67
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 160.18
+initial_velocity_max = 503.5
+damping_min = 83.517
+damping_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_hp7ot")
+
+[node name="Explosions" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Explosions"]
+stream = ExtResource("4_nanat")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Explosions"]
+stream = ExtResource("5_l4yae")
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="Explosions"]
+stream = ExtResource("6_f3srs")
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="Explosions"]
+stream = ExtResource("7_3u445")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]

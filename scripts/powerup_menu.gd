@@ -6,12 +6,11 @@ signal done
 @onready var menu = $HBoxContainer
 
 func show_powerups():
-	print("poweruppp")
 	var ids = range(powerups.size())
 	ids.shuffle()
 	for i in range(3):
-		print(ids[i])
-		var card = powerups[ids[i]].instantiate()
+		var card = powerups[ids[i]].instantiate() as PowerupCard
+		card.chosen.connect(_chosen_card.bind(i))
 		menu.add_child(card)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -33,5 +32,15 @@ func _clear_powerups():
 	for child in menu.get_children():
 		menu.remove_child(child)
 		child.queue_free()
+
+
+func _chosen_card(id: int) -> void:
+	print("chosen card " + str(id))
+	var player = get_tree().get_first_node_in_group("player")
+	menu.get_child(id).apply_card(player)
+	for i in range(3):
+		if i == id:
+			menu.get_child(i).animate_chosen()
+		else:
+			menu.get_child(i).animate_discard()
 	$AnimationPlayer.play("done")
-	emit_signal("done")

@@ -24,4 +24,8 @@ duration = 0.3
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3
 
+[node name="BubbleSpawnCooldown" type="Node" parent="."]
+script = ExtResource("3_37hxc")
+duration = 0.29
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

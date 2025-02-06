@@ -9,6 +9,7 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(damage: int):
 	$Health.damage(damage)
+	$DamageAnimator.play("take_damage")
 
 func _on_health_died() -> void:
 	queue_free()

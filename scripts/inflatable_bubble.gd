@@ -2,7 +2,7 @@ class_name InflatableBubble extends RigidBody2D
 
 @onready var spawnTime = Time.get_ticks_msec()
 const InitialSize := Vector2(303, 303)
-var GrowPerSec = 10000
+var GrowPerSec = 20000
 var canGrow = true
 var size := 100
 var wasMoving = false;
@@ -35,10 +35,14 @@ func stop_inflating(size := -1):
 	
 
 func _on_body_entered(body: Node) -> void:
+	$ExplosionArea.global_position = body.global_position
+	$Explosion.global_position = body.global_position
 	var explosionCircle = $ExplosionArea/CollisionShape2D.shape as CircleShape2D
 	explosionCircle.radius = explosionSize * ($CollisionShape2D.shape as CircleShape2D).radius
 	$Explosion.scale = explosionSize * $Sprite2D.scale
+	$CPUParticles2D.amount = 2 * sqrt(size / 100)
 	$AnimationPlayer.play("explode")
+	($Explosions.get_child(randi() % 4) as AudioStreamPlayer2D).play()
 
 
 func _on_explosion_area_body_entered(body: Node2D) -> void:

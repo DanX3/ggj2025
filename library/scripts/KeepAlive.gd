@@ -9,8 +9,10 @@ var timer: Timer
 func keep_alive():
 	timer = Timer.new()
 	timer.timeout.connect(_on_timer_timeout)
+	timer.autostart = true
 	add_child(timer)
-	timer.start(duration)
+	#timer.start(duration)
+	#timer.call_deferred("start", duration)
 	get_parent().reparent(get_node(reparent_node))
 
 

@@ -7,6 +7,7 @@ var arrowDir := Vector2.RIGHT
 var ShootForce = 1000
 var damageBonus := 0
 var spawnPointsCount = 3
+var mouseDir := Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
 	if not enabled:
@@ -15,8 +16,10 @@ func _physics_process(delta: float) -> void:
 	arrowDir = Vector2(Input.get_axis("move_left", "move_right"), 
 		Input.get_axis("move_up", "move_down"))
 	
-	if arrowDir.length_squared() > 0.3:
-		arrowPivot.rotation = atan2(arrowDir.y, arrowDir.x)
+	var aimDir = mouseDir if mouseDir.length_squared() > 0.0 else arrowDir
+	
+	if aimDir.length_squared() > 0.3:
+		arrowPivot.rotation = atan2(aimDir.y, aimDir.x)
 	
 	if Input.is_action_pressed("trigger"):
 		for spawn in spawnPoints.get_children():
@@ -30,7 +33,12 @@ func _physics_process(delta: float) -> void:
 				bubble.set_meta("damage", 1 + damageBonus)
 				var dir = $ArrowPivot/Arrow/SpawnPoints.global_position.normalized()
 				bubble.apply_central_impulse(ShootForce * dir)
-			
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var motion = event as InputEventMouseMotion
+		mouseDir = global_position.direction_to(get_global_mouse_position())
+
 
 func add_damage_bonus(bonus):
 	damageBonus += 1

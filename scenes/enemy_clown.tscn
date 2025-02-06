@@ -26,6 +26,7 @@ animations = [{
 }]
 
 [node name="Enemy" instance=ExtResource("1_wi6s4")]
+damage = 30
 
 [node name="Health" parent="." index="2"]
 max_health = 50

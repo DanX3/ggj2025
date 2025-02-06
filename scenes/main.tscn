@@ -42,7 +42,7 @@ value = 5
 
 [sub_resource type="Resource" id="Resource_wej4p"]
 script = ExtResource("4_mt4tn")
-power = 100
+power = 10
 spawnPeriod_s = 2.0
 sequence = Array[int]([3, 3, 3, 1])
 
@@ -171,7 +171,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("PowerupMenu:visible")
+tracks/6/path = NodePath("CanvasLayer3/PowerupMenu:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -190,7 +190,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [-80.0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -252,6 +252,18 @@ tracks/12/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CanvasLayer/ColorRect3:color")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0247, 0.071535, 0.19, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_v77rn"]
 resource_name = "game_over"
@@ -279,6 +291,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ColorRect3:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0247, 0.071535, 0.19, 0), Color(0.0247, 0.071535, 0.19, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_pr8xc"]
@@ -316,7 +340,7 @@ resource_name = "show_powerup"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PowerupMenu:visible")
+tracks/0/path = NodePath("CanvasLayer3/PowerupMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -328,7 +352,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PowerupMenu")
+tracks/1/path = NodePath("CanvasLayer3/PowerupMenu")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -350,6 +374,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
 "values": [Vector2(0, 13), Vector2(0, -1067)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BGMusic:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PowerupMusic:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_brvru"]
@@ -400,10 +448,10 @@ tracks/3/path = NodePath("PowerupMusic:volume_db")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [-80.0, 10.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -412,10 +460,10 @@ tracks/4/path = NodePath("BGMusic:volume_db")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-80.0]
+"values": [0.0, -80.0]
 }
 
 [sub_resource type="Animation" id="Animation_bp44a"]
@@ -464,10 +512,10 @@ tracks/3/path = NodePath("BGMusic:volume_db")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [-80.0, 0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -476,10 +524,10 @@ tracks/4/path = NodePath("PowerupMusic:volume_db")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-80.0]
+"values": [0.0, -80.0]
 }
 
 [sub_resource type="Animation" id="Animation_4w3v0"]
@@ -566,6 +614,7 @@ Waves = Array[ExtResource("4_mt4tn")]([SubResource("Resource_wej4p"), SubResourc
 
 [node name="Cielo" type="Sprite2D" parent="."]
 position = Vector2(0, -1062)
+scale = Vector2(1.05556, 1.05556)
 texture = ExtResource("9_6e2um")
 
 [node name="Floor" type="Sprite2D" parent="."]
@@ -599,6 +648,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0247, 0.071535, 0.19, 0.266667)
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0247, 0.071535, 0.19, 0)
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 visible = false
@@ -623,6 +683,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Game Over" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -659,14 +720,18 @@ libraries = {
 "": SubResource("AnimationLibrary_ycc88")
 }
 
-[node name="PowerupMenu" parent="." instance=ExtResource("10_5e7u3")]
-
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_62bbo")
+volume_db = -80.0
+autoplay = true
 
 [node name="PowerupMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_ffpg0")
 volume_db = -80.0
+autoplay = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 2
@@ -680,15 +745,27 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Victory" type="TextureRect" parent="CanvasLayer2"]
 modulate = Color(1, 1, 1, 0)
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 texture = ExtResource("19_rnp8q")
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+layer = 4
+follow_viewport_enabled = true
+
+[node name="PowerupMenu" parent="CanvasLayer3" instance=ExtResource("10_5e7u3")]
+offset_left = -964.0
+offset_top = -1610.0
+offset_right = -964.0
+offset_bottom = -1610.0
 
 [connection signal="damaged" from="Player" to="." method="_on_player_damaged"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="done" from="PowerupMenu" to="." method="_on_powerup_menu_done"]
+[connection signal="done" from="CanvasLayer3/PowerupMenu" to="." method="_on_powerup_menu_done"]

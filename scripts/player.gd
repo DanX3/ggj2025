@@ -15,6 +15,8 @@ var max_life = 100
 @export var spriteLeft: Sprite2D
 @export var spriteRight: Sprite2D
 
+var mouseDir := Vector2.ZERO
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$WeaponBase.set_enabled(false)
@@ -22,23 +24,31 @@ func _ready() -> void:
 	$WeaponCluster.set_enabled(false)
 	_on_weapon_gear_equipped("base")
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var motion = event as InputEventMouseMotion
+		mouseDir = global_position.direction_to(get_global_mouse_position())
+
 func _process(delta: float) -> void:
 	var arrowDir = Vector2(Input.get_axis("move_left", "move_right"), 
 		Input.get_axis("move_up", "move_down"))
-	if arrowDir.length_squared() < 0.8:
+	
+	var aimDir = mouseDir if mouseDir.length_squared() > 0.0 else arrowDir
+	
+	if aimDir.length_squared() < 0.8:
 		return
 		
 	for s in $Sprites.get_children():
 		if s is Sprite2D:
 			s.hide()
 	
-	if arrowDir.x > 0.5:
+	if aimDir.x > 0.5:
 		spriteRight.show()
-	elif arrowDir.x < -0.5:
+	elif aimDir.x < -0.5:
 		spriteLeft.show()
-	elif arrowDir.y > 0.5:
+	elif aimDir.y > 0.5:
 		spriteBack.show()
-	elif arrowDir.y < -0.5:
+	elif aimDir.y < -0.5:
 		spriteFront.show()
 
 func _on_weapon_gear_unequipped() -> void:
@@ -77,6 +87,7 @@ func get_weapon(index: int) -> Weapon:
 	match index:
 		0: return $WeaponBase
 		1: return $WeaponRay
+		2: return $WeaponCluster
 	
 	assert(false)
 	return null

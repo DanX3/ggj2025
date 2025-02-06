@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var damage = 10
+var damage = 3
 
 func scale_size(scale: float):
 	($CollisionShape2D.shape as CircleShape2D).radius *= scale
